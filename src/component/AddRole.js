@@ -1,21 +1,22 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const AddRole = () => {
-  const [roleName, setRoleName] = useState('');
+  const [roleName, setRoleName] = useState("");
   // const [description, setDescription] = useState('');
   const [parentRoles, setParentRoles] = useState([]);
   const [selectedParentId, setSelectedParentId] = useState(null);
-  const [successMessage, setSuccessMessage] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     // Fetch parent roles from the server and set state
-    axios.get('http://localhost:4000/roles')
-      .then(response => {
+    axios
+      .get("http://localhost:4000/roles")
+      .then((response) => {
         setParentRoles(response.data);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
   }, []);
@@ -23,40 +24,41 @@ const AddRole = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!roleName) {
-      setSuccessMessage('');
-      setErrorMessage('Role name cannot be empty.');
+      setSuccessMessage("");
+      setErrorMessage("Role name cannot be empty.");
       return;
     }
 
     if (!selectedParentId) {
-      setSuccessMessage('');
-      setErrorMessage('Please select a parent role.');
+      setSuccessMessage("");
+      setErrorMessage("Please select a parent role.");
       return;
     }
-    
-    const newRole = { 
-      id: parentRoles.length + 1,
+
+    const newRole = {
+      id: parentRoles[parentRoles.length-1].id + 1,
       name: roleName,
       // description: description,
       hasAParent: true,
       parentId: selectedParentId,
       childrenId: [],
-      numEmployees: 0
+      numEmployees: 0,
     };
     // Add new role to the server and reset form
-    axios.post('http://localhost:4000/roles', newRole)
-      .then(response => {
+    axios
+      .post("http://localhost:4000/roles", newRole)
+      .then((response) => {
         console.log(response.data);
-        setRoleName('');
+        setRoleName("");
         // setDescription('');
         setSelectedParentId(null);
-        setSuccessMessage('Role added successfully.');
-        setErrorMessage('');
+        setSuccessMessage("Role added successfully.");
+        setErrorMessage("");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
-        setSuccessMessage('');
-        setErrorMessage('Error adding role.');
+        setSuccessMessage("");
+        setErrorMessage("Error adding role.");
       });
   };
 
@@ -66,11 +68,17 @@ const AddRole = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-6 rounded-lg shadow-lg"
+      >
         <h1 className="text-2xl font-bold mb-4">Add a Role</h1>
 
         <div className="mb-4">
-          <label htmlFor="roleName" className="block text-gray-700 font-bold mb-2">
+          <label
+            htmlFor="roleName"
+            className="block text-gray-700 font-bold mb-2"
+          >
             Role Name
           </label>
           <input
@@ -97,7 +105,10 @@ const AddRole = () => {
         </div> */}
 
         <div className="mb-4">
-          <label htmlFor="parentRole" className="block text-gray-700 font-bold mb-2">
+          <label
+            htmlFor="parentRole"
+            className="block text-gray-700 font-bold mb-2"
+          >
             Parent Role
           </label>
           <select

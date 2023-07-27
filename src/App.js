@@ -10,6 +10,7 @@ import Employee from "./pages/Employee";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Role from "./pages/Role";
+import RoleTable from "./pages/RoleTable";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="about" element={<About />} />
           <Route path="add-employee" element={<AddEmployee />} />
           <Route path="add-role" element={<AddRole />} />
+          <Route path="role-table" element={<RoleTable />} />
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

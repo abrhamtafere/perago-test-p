@@ -227,33 +227,15 @@
       "numEmployees": 1
     },
     {
-      "id": 2,
-      "name": "CTO",
-      "hasAParent": true,
-      "parentId": 1,
-      "childrenId": [
-        3,
-        5,
-        7,
-        9
-      ],
-      "numEmployees": 4
-    },
-    {
       "id": 3,
       "name": "Project Manager",
-      "hasAParent": true,
-      "parentId": 2,
-      "childrenId": [
-        6
-      ],
-      "numEmployees": 1
+      "parentId": "1"
     },
     {
       "id": 4,
       "name": "CFO",
       "hasAParent": true,
-      "parentId": 1,
+      "parentId": "1",
       "childrenId": [
         8
       ],
@@ -268,18 +250,6 @@
         10
       ],
       "numEmployees": 1
-    },
-    {
-      "id": 6,
-      "name": "Tech Lead",
-      "hasAParent": true,
-      "parentId": 3,
-      "childrenId": [
-        16,
-        17,
-        19
-      ],
-      "numEmployees": 0
     },
     {
       "id": 7,
@@ -432,14 +402,6 @@
       "numEmployees": 0
     },
     {
-      "id": 25,
-      "name": "BBFf",
-      "hasAParent": true,
-      "parentId": null,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
       "id": 26,
       "name": "CEOv",
       "hasAParent": true,
@@ -449,33 +411,30 @@
     },
     {
       "id": 27,
-      "name": "EOFd",
-      "hasAParent": true,
-      "parentId": null,
-      "childrenId": [],
-      "numEmployees": 0
+      "name": "EOBN",
+      "parentId": "1"
     },
     {
-      "id": 28,
-      "name": "CEOa",
-      "hasAParent": true,
-      "parentId": 6,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 29,
-      "name": "CEOc",
+      "id": 35,
+      "name": "CEO",
       "hasAParent": true,
       "parentId": 19,
       "childrenId": [],
       "numEmployees": 0
     },
     {
-      "id": 30,
-      "name": "CEOx",
+      "id": 36,
+      "name": "TTO",
       "hasAParent": true,
-      "parentId": 6,
+      "parentId": 11,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 37,
+      "name": "Test",
+      "hasAParent": true,
+      "parentId": 12,
       "childrenId": [],
       "numEmployees": 0
     }
@@ -491,7 +450,7 @@
     },
     {
       "id": 2,
-      "name": "Jane Smith",
+      "name": "Fentanesh Belachewu",
       "role": "CTO",
       "salary": 120000,
       "managerId": 1,
@@ -499,7 +458,7 @@
     },
     {
       "id": 3,
-      "name": "Bob Johnson",
+      "name": "Bob Abrham",
       "role": "Project Manager",
       "salary": 100000,
       "managerId": 2,
@@ -515,7 +474,7 @@
     },
     {
       "id": 5,
-      "name": "Tom Wang",
+      "name": "Jery Wang",
       "role": "Tech Lead",
       "salary": 90000,
       "managerId": 4,
@@ -603,9 +562,9 @@
     },
     {
       "id": 16,
-      "name": "Jason Wu",
+      "name": "Jason WuNetu",
       "role": "Other Backend Roles",
-      "salary": 70000,
+      "salary": "80000",
       "managerId": 5,
       "photo": "https://example.com/photos/jason_wu.jpg"
     },
@@ -642,58 +601,14 @@
       "photo": "https://example.com/photos/george_lee.jpg"
     },
     {
-      "id": 21,
-      "name": "Amy Huang",
-      "role": "Product Manager",
-      "salary": 100000,
-      "managerId": 20,
-      "photo": "https://example.com/photos/amy_huang.jpg"
-    },
-    {
-      "id": 22,
-      "name": "Matt Kim",
-      "role": "Operation Manager",
-      "salary": 90000,
-      "managerId": 20,
-      "photo": "https://example.com/photos/matt_kim.jpg"
-    },
-    {
-      "id": 23,
-      "name": "Olivia Kim",
-      "role": "Customer Relation",
-      "salary": 80000,
-      "managerId": 21,
-      "photo": "https://example.com/photos/olivia_kim.jpg"
-    },
-    {
-      "name": "abrham Tafere",
-      "role": "CEO",
-      "salary": "100000",
-      "managerId": "",
+      "name": "abrham tafere nn",
+      "role": "BBFE",
+      "salary": "33333333333",
+      "managerId": "2",
       "photo": {
         "0": {}
       },
-      "id": 24
-    },
-    {
-      "name": "test name",
-      "role": "EOF",
-      "salary": "3232",
-      "managerId": "3",
-      "photo": {
-        "0": {}
-      },
-      "id": 25
-    },
-    {
-      "name": "y",
-      "role": "u",
-      "salary": "8",
-      "managerId": "8",
-      "photo": {
-        "0": {}
-      },
-      "id": 26
+      "id": 21
     }
   ]
 }

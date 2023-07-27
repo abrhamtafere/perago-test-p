@@ -6,7 +6,7 @@ const AddEmployee = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const onSubmitForm = async (data) => {
-    try {
+    try {   
       const response = await axios.post(
         "http://localhost:4000/employees",
         data

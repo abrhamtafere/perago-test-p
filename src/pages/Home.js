@@ -14,7 +14,7 @@ const Home = () => {
     </Link>
 
     <Link
-      to="/roles"
+      to="/role-table"
       className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md text-lg font-medium transition duration-300"
     >
       View Roles
