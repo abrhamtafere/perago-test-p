@@ -1,0 +1,589 @@
+{
+  "mockRoles": [
+    {
+      "id": "2a3bged56e7f8g9h0i1j2k",
+      "name": "CEO",
+      "description": "Leads a specific team",
+      "childrenId": [
+        "2a3b4c5d6e7f8g9h0i1j2k",
+        "3a4b5c6d7e8f9g0h1i2j3k"
+      ],
+      "hasAParent": false,
+      "parentId": null,
+      "employed": true,
+      "employee": [
+        {
+          "id": "5mqcmjhMZSopoTKwSkZFq",
+          "name": "Derek Prince",
+          "email": "abdi@tgmil.com",
+          "gender": "Male",
+          "dataOfBirth": "2023-07-03",
+          "image": "",
+          "phoneNumber": "+4325432534",
+          "addedOn": "20/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "2a3b4c5d6e7f8g9h0i1j2k",
+      "name": "COO",
+      "description": "Leads a specific team",
+      "childrenId": [
+        "zG6I2zRzhRgRNh2uYG6qW",
+        "u2VzU3CKKKbixGgzu6OGR",
+        "uQnKjDy1Q1xeWA_zQOt1W"
+      ],
+      "hasAParent": true,
+      "parentId": "1a2b3c4d5e6f7g8h9i0j1k",
+      "employed": true,
+      "employee": [
+        {
+          "id": "5mqcmjhMZSosFTKwSkZFq",
+          "name": "Abdi Megersa",
+          "email": "abdi@tgmil.com",
+          "gender": "Male",
+          "dataOfBirth": "2023-07-03",
+          "image": "",
+          "phoneNumber": "+4325432534",
+          "addedOn": "20/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "3a4b5c6d7e8f9g0h1i2j3k",
+      "name": "CTO",
+      "description": "Develops software applications",
+      "childrenId": [
+        "7a8b9c0d1e2f3g4h5i6j7k",
+        "jp7imaa3hh42ciEvK8XAP"
+      ],
+      "hasAParent": true,
+      "parentId": "1a2b3c4d5e6f7g8h9i0j1k",
+      "employed": true,
+      "employee": [
+        {
+          "id": "6p8wq8n9zAneBfSu_SSUS",
+          "name": "example name",
+          "email": "ex@gmail.com",
+          "gender": "Female",
+          "dateOfBirth": "2023-07-03",
+          "image": "",
+          "phoneNumber": "+@345234",
+          "addedOn": "19/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "7a8b9c0d1e2f3g4h5i6j7k",
+      "name": "Database Administrator",
+      "description": "Manages and maintains databases",
+      "childrenId": [
+        "HB81kfEWY9J2yrQxGAoeG"
+      ],
+      "hasAParent": true,
+      "parentId": "3a4b5c6d7e8f9g0h1i2j3k",
+      "employed": true,
+      "employee": [
+        {
+          "id": "Z9aEjv66nlpag2l0URmqX",
+          "name": "David Broke",
+          "email": "daveb@gmail.com",
+          "gender": "Male",
+          "dataOfBirth": "2023-07-18",
+          "image": "",
+          "phoneNumber": "364563456",
+          "addedOn": "19/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "jp7imaa3hh42ciEvK8XAP",
+      "name": "Senior Developer",
+      "description": "exmple dev chidren",
+      "childrenId": [
+        "WMlQ6g5-lXZ3fF7zngrVJ"
+      ],
+      "hasAParent": true,
+      "parentId": "3a4b5c6d7e8f9g0h1i2j3k",
+      "employed": true,
+      "employee": [
+        {
+          "id": "yj3vXqz4PJ3yKx5p1MrqE",
+          "name": "Sarah Lee",
+          "email": "sarah.lee@gmail.com",
+          "gender": "Female",
+          "dateOfBirth": "1990-03-15",
+          "image": "",
+          "phoneNumber": "+123456789",
+          "addedOn": "21/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "zG6I2zRzhRgRNh2uYG6qW",
+      "name": "Marketing Manager",
+      "description": "Manages marketing campaigns",
+      "childrenId": [],
+      "hasAParent": true,
+      "parentId": "2a3b4c5d6e7f8g9h0i1j2k",
+      "employed": false,
+      "employee": []
+    },
+    {
+      "id": "u2VzU3CKKKbixGgzu6OGR",
+      "name": "Sales Manager",
+      "description": "Manages sales team",
+      "childrenId": [],
+      "hasAParent": true,
+      "parentId": "2a3b4c5d6e7f8g9h0i1j2k",
+      "employed": true,
+      "employee": [
+        {
+          "id": "iFJ5t8sTb8i4k9zHvBjKo",
+          "name": "John Doe",
+          "email": "johndoe@gmail.com",
+          "gender": "Male",
+          "dateOfBirth": "1985-12-25",
+          "image": "",
+          "phoneNumber": "+987654321",
+          "addedOn": "22/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "uQnKjDy1Q1xeWA_zQOt1W",
+      "name": "HR Manager",
+      "description": "Manages human resources",
+      "childrenId": [],
+      "hasAParent": true,
+      "parentId": "2a3b4c5d6e7f8g9h0i1j2k",
+      "employed": true,
+      "employee": [
+        {
+          "id": "pJ9yT5eEa2fyWnKx4XsDl",
+          "name": "Jane Smith",
+          "email": "jane.smith@gmail.com",
+          "gender": "Female",
+          "dateOfBirth": "1995-06-10",
+          "image": "",
+          "phoneNumber": "+876543210",
+          "addedOn": "23/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "HB81kfEWY9J2yrQxGAoeG",
+      "name": "Junior Database Administrator",
+      "description": "Assists the Database Administrator",
+      "childrenId": [],
+      "hasAParent": true,
+      "parentId": "7a8b9c0d1e2f3g4h5i6j7k",
+      "employed": true,
+      "employee": [
+        {
+          "id": "OoI2d7zKwBf6Wm9yNnGtS",
+          "name": "Alex Brown",
+          "email": "alexbrown@gmail.com",
+          "gender": "Male",
+          "dateOfBirth": "2000-01-01",
+          "image": "",
+          "phoneNumber": "+112233445",
+          "addedOn": "24/07/2023"
+        }
+      ]
+    },
+    {
+      "id": "WMlQ6g5-lXZ3fF7zngrVJ",
+      "name": "Junior Developer",
+      "description": "Assists the Senior Developer",
+      "childrenId": [],
+      "hasAParent": true,
+      "parentId": "jp7imaa3hh42ciEvK8XAP",
+      "employed": true,
+      "employee": [
+        {
+          "id": "Xr4dG7pTb2jKl9vNmFeUq",
+          "name": "Michael Chen",
+          "email": "michaelchen@gmail.com",
+          "gender": "Male",
+          "dateOfBirth": "2001-05-20",
+          "image": "",
+          "phoneNumber": "+334455667",
+          "addedOn": "25/07/2023"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "name": "CEO",
+      "hasAParent": false,
+      "childrenId": [
+        2,
+        4,
+        11
+      ],
+      "numEmployees": 1
+    },
+    {
+      "id": 2,
+      "name": "CTO",
+      "hasAParent": true,
+      "parentId": 1,
+      "childrenId": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "numEmployees": 4
+    },
+    {
+      "id": 3,
+      "name": "Project Manager",
+      "hasAParent": true,
+      "parentId": 2,
+      "childrenId": [
+        6
+      ],
+      "numEmployees": 1
+    },
+    {
+      "id": 4,
+      "name": "CFO",
+      "hasAParent": true,
+      "parentId": 1,
+      "childrenId": [
+        8
+      ],
+      "numEmployees": 1
+    },
+    {
+      "id": 5,
+      "name": "Product Owner",
+      "hasAParent": true,
+      "parentId": 2,
+      "childrenId": [
+        10
+      ],
+      "numEmployees": 1
+    },
+    {
+      "id": 6,
+      "name": "Tech Lead",
+      "hasAParent": true,
+      "parentId": 3,
+      "childrenId": [
+        16,
+        17,
+        19
+      ],
+      "numEmployees": 0
+    },
+    {
+      "id": 7,
+      "name": "QA Engineer",
+      "hasAParent": true,
+      "parentId": 2,
+      "childrenId": [
+        12,
+        14,
+        18
+      ],
+      "numEmployees": 0
+    },
+    {
+      "id": 8,
+      "name": "Chef Accountant",
+      "hasAParent": true,
+      "parentId": 4,
+      "childrenId": [
+        10
+      ],
+      "numEmployees": 0
+    },
+    {
+      "id": 9,
+      "name": "Scrum Master",
+      "hasAParent": true,
+      "parentId": 2,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 10,
+      "name": "Frontend Developer",
+      "hasAParent": true,
+      "parentId": 8,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 11,
+      "name": "HR",
+      "hasAParent": true,
+      "parentId": 1,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 12,
+      "name": "Backend Developer",
+      "hasAParent": true,
+      "parentId": 7,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 13,
+      "name": "Financial Analyst",
+      "hasAParent": true,
+      "parentId": 8,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 14,
+      "name": "DevOps Engineer",
+      "hasAParent": true,
+      "parentId": 7,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 15,
+      "name": "Account and Payable",
+      "hasAParent": true,
+      "parentId": 8,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 16,
+      "name": "Other Backend Roles",
+      "hasAParent": true,
+      "parentId": 6,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 17,
+      "name": "Other Frontend Roles",
+      "hasAParent": true,
+      "parentId": 6,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 18,
+      "name": "Other DevOps Roles",
+      "hasAParent": true,
+      "parentId": 7,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 19,
+      "name": "Other QA Roles",
+      "hasAParent": true,
+      "parentId": 6,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 20,
+      "name": "EOF",
+      "hasAParent": true,
+      "parentId": 19,
+      "childrenId": [],
+      "numEmployees": 0
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "role": "CEO",
+      "salary": 150000,
+      "managerId": null,
+      "photo": "https://example.com/photos/john_doe.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "role": "CTO",
+      "salary": 120000,
+      "managerId": 1,
+      "photo": "https://example.com/photos/jane_smith.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Bob Johnson",
+      "role": "Project Manager",
+      "salary": 100000,
+      "managerId": 2,
+      "photo": "https://example.com/photos/bob_johnson.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Alice Lee",
+      "role": "Product Owner",
+      "salary": 90000,
+      "managerId": 3,
+      "photo": "https://example.com/photos/alice_lee.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Tom Wang",
+      "role": "Tech Lead",
+      "salary": 90000,
+      "managerId": 4,
+      "photo": "https://example.com/photos/tom_wang.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Maggie Chen",
+      "role": "Frontend Developer",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/maggie_chen.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Samuel Kim",
+      "role": "Backend Developer",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/samuel_kim.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Emily Davis",
+      "role": "QA Engineer",
+      "salary": 60000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/emily_davis.jpg"
+    },
+    {
+      "id": 9,
+      "name": "Rachel Park",
+      "role": "Scrum Master",
+      "salary": 80000,
+      "managerId": 4,
+      "photo": "https://example.com/photos/rachel_park.jpg"
+    },
+    {
+      "id": 10,
+      "name": "Mike Wilson",
+      "role": "Frontend Developer",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/mike_wilson.jpg"
+    },
+    {
+      "id": 11,
+      "name": "David Brown",
+      "role": "CFO",
+      "salary": 120000,
+      "managerId": 1,
+      "photo": "https://example.com/photos/david_brown.jpg"
+    },
+    {
+      "id": 12,
+      "name": "Julie Davis",
+      "role": "Chef Accountant",
+      "salary": 80000,
+      "managerId": 11,
+      "photo": "https://example.com/photos/julie_davis.jpg"
+    },
+    {
+      "id": 13,
+      "name": "Chris Kim",
+      "role": "Financial Analyst",
+      "salary": 70000,
+      "managerId": 12,
+      "photo": "https://example.com/photos/chris_kim.jpg"
+    },
+    {
+      "id": 14,
+      "name": "Erica Chen",
+      "role": "DevOps Engineer",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/erica_chen.jpg"
+    },
+    {
+      "id": 15,
+      "name": "Kevin Lee",
+      "role": "Account and Payable",
+      "salary": 70000,
+      "managerId": 12,
+      "photo": "https://example.com/photos/kevin_lee.jpg"
+    },
+    {
+      "id": 16,
+      "name": "Jason Wu",
+      "role": "Other Backend Roles",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/jason_wu.jpg"
+    },
+    {
+      "id": 17,
+      "name": "Cindy Liu",
+      "role": "Other Frontend Roles",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/cindy_liu.jpg"
+    },
+    {
+      "id": 18,
+      "name": "Alex Kim",
+      "role": "Other DevOps Roles",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/alex_kim.jpg"
+    },
+    {
+      "id": 19,
+      "name": "Sophie Kim",
+      "role": "Other QA Roles",
+      "salary": 70000,
+      "managerId": 5,
+      "photo": "https://example.com/photos/sophie_kim.jpg"
+    },
+    {
+      "id": 20,
+      "name": "George Lee",
+      "role": "COO",
+      "salary": 130000,
+      "managerId": 1,
+      "photo": "https://example.com/photos/george_lee.jpg"
+    },
+    {
+      "id": 21,
+      "name": "Amy Huang",
+      "role": "Product Manager",
+      "salary": 100000,
+      "managerId": 20,
+      "photo": "https://example.com/photos/amy_huang.jpg"
+    },
+    {
+      "id": 22,
+      "name": "Matt Kim",
+      "role": "Operation Manager",
+      "salary": 90000,
+      "managerId": 20,
+      "photo": "https://example.com/photos/matt_kim.jpg"
+    },
+    {
+      "id": 23,
+      "name": "Olivia Kim",
+      "role": "Customer Relation",
+      "salary": 80000,
+      "managerId": 21,
+      "photo": "https://example.com/photos/olivia_kim.jpg"
+    }
+  ]
+}

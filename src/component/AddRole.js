@@ -1,12 +1,49 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AddRole = () => {
   const [roleName, setRoleName] = useState('');
-  const [description, setDescription] = useState('');
+  // const [description, setDescription] = useState('');
+  const [parentRoles, setParentRoles] = useState([]);
+  const [selectedParentId, setSelectedParentId] = useState(null);
+
+  useEffect(() => {
+    // Fetch parent roles from the server and set state
+    axios.get('http://localhost:4000/roles')
+      .then(response => {
+        setParentRoles(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // TODO: Handle form submission
+    const newRole = { 
+      id: parentRoles.length + 1,
+      name: roleName,
+      // description: description,
+      hasAParent: true,
+      parentId: selectedParentId,
+      childrenId: [],
+      numEmployees: 0
+    };
+    // Add new role to the server and reset form
+    axios.post('http://localhost:4000/roles', newRole)
+      .then(response => {
+        console.log(response.data);
+        setRoleName('');
+        // setDescription('');
+        setSelectedParentId(null);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  };
+
+  const handleParentChange = (event) => {
+    setSelectedParentId(Number(event.target.value));
   };
 
   return (
@@ -28,7 +65,7 @@ const AddRole = () => {
           />
         </div>
 
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="description" className="block text-gray-700 font-bold mb-2">
             Description
           </label>
@@ -39,6 +76,26 @@ const AddRole = () => {
             onChange={(event) => setDescription(event.target.value)}
             className="w-full border border-gray-400 p-2 rounded-md"
           />
+        </div> */}
+
+        <div className="mb-4">
+          <label htmlFor="parentRole" className="block text-gray-700 font-bold mb-2">
+            Parent Role
+          </label>
+          <select
+            name="parentRole"
+            id="parentRole"
+            value={selectedParentId}
+            onChange={handleParentChange}
+            className="w-full border border-gray-400 p-2 rounded-md"
+          >
+            <option value="">Select a parent role</option>
+            {parentRoles.map((role) => (
+              <option key={role.id} value={role.id}>
+                {role.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="flex justify-end">
