@@ -6,6 +6,8 @@ const AddRole = () => {
   // const [description, setDescription] = useState('');
   const [parentRoles, setParentRoles] = useState([]);
   const [selectedParentId, setSelectedParentId] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     // Fetch parent roles from the server and set state
@@ -20,6 +22,18 @@ const AddRole = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (!roleName) {
+      setSuccessMessage('');
+      setErrorMessage('Role name cannot be empty.');
+      return;
+    }
+
+    if (!selectedParentId) {
+      setSuccessMessage('');
+      setErrorMessage('Please select a parent role.');
+      return;
+    }
+    
     const newRole = { 
       id: parentRoles.length + 1,
       name: roleName,
@@ -36,9 +50,13 @@ const AddRole = () => {
         setRoleName('');
         // setDescription('');
         setSelectedParentId(null);
+        setSuccessMessage('Role added successfully.');
+        setErrorMessage('');
       })
       .catch(error => {
         console.error(error);
+        setSuccessMessage('');
+        setErrorMessage('Error adding role.');
       });
   };
 
@@ -97,6 +115,14 @@ const AddRole = () => {
             ))}
           </select>
         </div>
+
+        {successMessage && (
+          <div className="text-green-700 font-bold mb-2">{successMessage}</div>
+        )}
+
+        {errorMessage && (
+          <div className="text-red-700 font-bold mb-2">{errorMessage}</div>
+        )}
 
         <div className="flex justify-end">
           <button

@@ -180,7 +180,7 @@ export default function Role() {
     console.log('loading')
     // Render a loading spinner or message until data is fetched
     return <div>Loading...</div>
-  } else {
+  }
     
 
   // const treeData2 = generateTreeData(data2);
@@ -203,5 +203,4 @@ export default function Role() {
       </div>
     </div>
   );
-}
 }

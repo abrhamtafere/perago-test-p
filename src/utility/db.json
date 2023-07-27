@@ -398,6 +398,86 @@
       "parentId": 19,
       "childrenId": [],
       "numEmployees": 0
+    },
+    {
+      "id": 21,
+      "name": "BBF",
+      "hasAParent": true,
+      "parentId": 6,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 22,
+      "name": "FBI",
+      "hasAParent": true,
+      "parentId": 11,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 23,
+      "name": "Abrham Tafere",
+      "hasAParent": true,
+      "parentId": 4,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 24,
+      "name": "",
+      "hasAParent": true,
+      "parentId": null,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 25,
+      "name": "BBFf",
+      "hasAParent": true,
+      "parentId": null,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 26,
+      "name": "CEOv",
+      "hasAParent": true,
+      "parentId": null,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 27,
+      "name": "EOFd",
+      "hasAParent": true,
+      "parentId": null,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 28,
+      "name": "CEOa",
+      "hasAParent": true,
+      "parentId": 6,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 29,
+      "name": "CEOc",
+      "hasAParent": true,
+      "parentId": 19,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 30,
+      "name": "CEOx",
+      "hasAParent": true,
+      "parentId": 6,
+      "childrenId": [],
+      "numEmployees": 0
     }
   ],
   "employees": [
@@ -407,7 +487,7 @@
       "role": "CEO",
       "salary": 150000,
       "managerId": null,
-      "photo": "https://example.com/photos/john_doe.jpg"
+      "photo": "https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1210-1024x683.jpg"
     },
     {
       "id": 2,
@@ -415,7 +495,7 @@
       "role": "CTO",
       "salary": 120000,
       "managerId": 1,
-      "photo": "https://example.com/photos/jane_smith.jpg"
+      "photo": "https://media.licdn.com/dms/image/D4E03AQHHAPjjL6pQ1Q/profile-displayphoto-shrink_800_800/0/1673899223410?e=2147483647&v=beta&t=K7Zi4sQQswzpmtm8EOvpu7IzbmY7R0Neht3QoHxWzSk"
     },
     {
       "id": 3,
@@ -584,6 +664,36 @@
       "salary": 80000,
       "managerId": 21,
       "photo": "https://example.com/photos/olivia_kim.jpg"
+    },
+    {
+      "name": "abrham Tafere",
+      "role": "CEO",
+      "salary": "100000",
+      "managerId": "",
+      "photo": {
+        "0": {}
+      },
+      "id": 24
+    },
+    {
+      "name": "test name",
+      "role": "EOF",
+      "salary": "3232",
+      "managerId": "3",
+      "photo": {
+        "0": {}
+      },
+      "id": 25
+    },
+    {
+      "name": "y",
+      "role": "u",
+      "salary": "8",
+      "managerId": "8",
+      "photo": {
+        "0": {}
+      },
+      "id": 26
     }
   ]
 }
