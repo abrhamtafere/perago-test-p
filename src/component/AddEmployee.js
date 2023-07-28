@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
 const AddEmployee = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const [roles, setRoles] = useState([]);
+
+  useEffect(() => {
+    const fetchRoles = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/roles");
+        setRoles(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchRoles();
+  }, []);
 
   const onSubmitForm = async (data) => {
     try {   
@@ -18,7 +31,7 @@ const AddEmployee = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto my-8 p-8 bg-gray-100 rounded-lg shadow-lg">
+    <div className="max-w-lg mx-auto my-8 p-8 bg-gray-200 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Add Employee</h2>
       <form onSubmit={handleSubmit(onSubmitForm)}>
         <div className="mb-4">
@@ -43,16 +56,22 @@ const AddEmployee = () => {
           <label htmlFor="role" className="block text-gray-700 font-bold mb-2">
             Role
           </label>
-          <input
+          <select
             name="role"
-            type="text"
             {...register("role", {
               required: "Role is required",
             })}
             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
               errors.role ? "border-red-500" : ""
             }`}
-          />
+          >
+            <option value="">Select a role</option>
+            {roles.map((role) => (
+              <option key={role.id} value={role.name}>
+                {role.name}
+              </option>
+            ))}
+          </select>
           {errors.role && (
             <p className="text-red-500 mt-2">{errors.role.message}</p>
           )}

@@ -12,7 +12,7 @@ export const NavBar = () => {
           <div className="flex justify-between">
             <div className="flex items-center">
               <Link to="/">
-                <h1 className="text-white font-bold uppercase">Logo</h1>
+                <h1 className="text-white font-bold uppercase"><img src='./images/perago.png' alt='perago' className='w-44 h-12'/></h1>
               </Link>
             </div>
             <div className="hidden md:flex md:items-center md:space-x-6">

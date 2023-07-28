@@ -6,11 +6,12 @@ import {NavBar} from "./component/NavBar";
 import AddEmployee from "./component/AddEmployee";
 import AddRole from "./component/AddRole";
 import About from "./pages/About";
-import Employee from "./pages/Employee";
+// import Employee from "./pages/Employee";
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Role from "./pages/Role";
 import RoleTable from "./pages/RoleTable";
+import EmployeeTable from "./pages/EmployeeTable";
 
 function App() {
   return (
@@ -19,11 +20,14 @@ function App() {
         <Route path="/" element={<NavBar />}>
           <Route index element={<Home />} />
           <Route path="role" element={<Role />} />
-          <Route path="employee" element={<Employee />} />
+          <Route path="employees-table" element={<EmployeeTable />} />
           <Route path="about" element={<About />} />
           <Route path="add-employee" element={<AddEmployee />} />
           <Route path="add-role" element={<AddRole />} />
           <Route path="role-table" element={<RoleTable />} />
+          <Route path="employee" element={<EmployeeTable />} />
+          {/* <Route path="employee" element={<Employee />} /> */}
+          
           <Route path="*" element={<NoPage />} />
         </Route>
       </Routes>

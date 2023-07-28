@@ -229,7 +229,13 @@
     {
       "id": 3,
       "name": "Project Manager",
-      "parentId": "1"
+      "hasAParent": true,
+      "parentId": "1",
+      "parentId": 2,
+      "childrenId": [
+        10
+      ],
+      "numEmployees": 1
     },
     {
       "id": 4,
@@ -237,7 +243,7 @@
       "hasAParent": true,
       "parentId": "1",
       "childrenId": [
-        8
+        5
       ],
       "numEmployees": 1
     },
@@ -384,59 +390,6 @@
       "parentId": 11,
       "childrenId": [],
       "numEmployees": 0
-    },
-    {
-      "id": 23,
-      "name": "Abrham Tafere",
-      "hasAParent": true,
-      "parentId": 4,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 24,
-      "name": "",
-      "hasAParent": true,
-      "parentId": null,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 26,
-      "name": "CEOv",
-      "hasAParent": true,
-      "parentId": null,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 27,
-      "name": "EOBN",
-      "parentId": "1"
-    },
-    {
-      "id": 35,
-      "name": "CEO",
-      "hasAParent": true,
-      "parentId": 19,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 36,
-      "name": "TTO",
-      "hasAParent": true,
-      "parentId": 11,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 37,
-      "name": "Test",
-      "hasAParent": true,
-      "parentId": 12,
-      "childrenId": [],
-      "numEmployees": 0
     }
   ],
   "employees": [
@@ -461,7 +414,7 @@
       "name": "Bob Abrham",
       "role": "Project Manager",
       "salary": 100000,
-      "managerId": 2,
+      "managerId": 1,
       "photo": "https://example.com/photos/bob_johnson.jpg"
     },
     {
@@ -609,6 +562,26 @@
         "0": {}
       },
       "id": 21
+    },
+    {
+      "name": "aa",
+      "role": "CEO",
+      "salary": "788",
+      "managerId": "3",
+      "photo": {
+        "0": {}
+      },
+      "id": 22
+    },
+    {
+      "name": "aa",
+      "role": "CEO",
+      "salary": "788",
+      "managerId": "",
+      "photo": {
+        "0": {}
+      },
+      "id": 23
     }
   ]
 }
