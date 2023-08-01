@@ -227,6 +227,14 @@
       "numEmployees": 1
     },
     {
+      "id": 2,
+      "name": "CTO",
+      "hasAParent": true,
+      "parentId": 1,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
       "id": 3,
       "name": "Project Manager",
       "hasAParent": true,
@@ -369,10 +377,42 @@
       "numEmployees": 0
     },
     {
-      "id": 20,
-      "name": "CTO",
+      "id": 21,
+      "name": "CHH",
       "hasAParent": true,
       "parentId": 1,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 22,
+      "name": "Anfular Developer",
+      "hasAParent": true,
+      "parentId": 4,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 23,
+      "name": "CEO",
+      "hasAParent": true,
+      "parentId": 4,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 24,
+      "name": "CEO",
+      "hasAParent": true,
+      "parentId": 1,
+      "childrenId": [],
+      "numEmployees": 0
+    },
+    {
+      "id": 25,
+      "name": "ceo",
+      "hasAParent": true,
+      "parentId": 6,
       "childrenId": [],
       "numEmployees": 0
     }
@@ -409,14 +449,6 @@
       "salary": 90000,
       "managerId": 3,
       "photo": "https://example.com/photos/alice_lee.jpg"
-    },
-    {
-      "id": 5,
-      "name": "Jery Wan",
-      "role": "Tech Lead",
-      "salary": 90000,
-      "managerId": 4,
-      "photo": "https://example.com/photos/tom_wang.jpg"
     },
     {
       "id": 6,
@@ -607,6 +639,46 @@
         "0": {}
       },
       "id": 27
+    },
+    {
+      "name": "test employee ree",
+      "role": "CEO",
+      "salary": "40000",
+      "managerId": "3",
+      "photo": {
+        "0": {}
+      },
+      "id": 28
+    },
+    {
+      "name": "Abrham Tafere",
+      "role": "CTO",
+      "salary": "34000",
+      "managerId": "1",
+      "photo": {
+        "0": {}
+      },
+      "id": 29
+    },
+    {
+      "name": "dd",
+      "role": "FB",
+      "salary": "33",
+      "managerId": "3",
+      "photo": {
+        "0": {}
+      },
+      "id": 30
+    },
+    {
+      "name": "Abrham Tafere",
+      "role": "CTO",
+      "salary": "34000",
+      "managerId": "1",
+      "photo": {
+        "0": {}
+      },
+      "id": 31
     }
   ]
 }

@@ -119,7 +119,7 @@ const AddRole = () => {
             className="w-full border border-gray-400 p-2 rounded-md"
           >
             <option value="">Select a parent role</option>
-            {parentRoles.map((role) => (
+            {parentRoles.filter(role => role.name.toLowerCase() !== roleName.toLowerCase()).map((role) => (
               <option key={role.id} value={role.id}>
                 {role.name}
               </option>
