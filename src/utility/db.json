@@ -230,10 +230,9 @@
       "id": 3,
       "name": "Project Manager",
       "hasAParent": true,
-      "parentId": "1",
       "parentId": 2,
       "childrenId": [
-        10
+        6
       ],
       "numEmployees": 1
     },
@@ -241,21 +240,23 @@
       "id": 4,
       "name": "CFO",
       "hasAParent": true,
-      "parentId": "1",
+      "parentId": 1,
       "childrenId": [
-        5
+        8
       ],
       "numEmployees": 1
     },
     {
-      "id": 5,
-      "name": "Product Owner",
+      "id": 6,
+      "name": "Tech Lead",
       "hasAParent": true,
-      "parentId": 2,
+      "parentId": 3,
       "childrenId": [
-        10
+        16,
+        17,
+        19
       ],
-      "numEmployees": 1
+      "numEmployees": 0
     },
     {
       "id": 7,
@@ -361,33 +362,17 @@
     },
     {
       "id": 19,
-      "name": "Other QA Roles",
+      "name": "FB",
       "hasAParent": true,
-      "parentId": 6,
+      "parentId": 2,
       "childrenId": [],
       "numEmployees": 0
     },
     {
       "id": 20,
-      "name": "EOF",
+      "name": "CTO",
       "hasAParent": true,
-      "parentId": 19,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 21,
-      "name": "BBF",
-      "hasAParent": true,
-      "parentId": 6,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 22,
-      "name": "FBI",
-      "hasAParent": true,
-      "parentId": 11,
+      "parentId": 1,
       "childrenId": [],
       "numEmployees": 0
     }
@@ -411,7 +396,7 @@
     },
     {
       "id": 3,
-      "name": "Bob Abrham",
+      "name": "Bob Adnan",
       "role": "Project Manager",
       "salary": 100000,
       "managerId": 1,
@@ -427,7 +412,7 @@
     },
     {
       "id": 5,
-      "name": "Jery Wang",
+      "name": "Jery Wan",
       "role": "Tech Lead",
       "salary": 90000,
       "managerId": 4,
@@ -564,24 +549,64 @@
       "id": 21
     },
     {
-      "name": "aa",
-      "role": "CEO",
-      "salary": "788",
-      "managerId": "3",
+      "name": "abrhame",
+      "role": "HR",
+      "salary": "42",
+      "managerId": "1",
       "photo": {
         "0": {}
       },
       "id": 22
     },
     {
-      "name": "aa",
-      "role": "CEO",
-      "salary": "788",
-      "managerId": "",
+      "name": "ab5",
+      "role": "HR",
+      "salary": "5555555",
+      "managerId": "4",
       "photo": {
         "0": {}
       },
       "id": 23
+    },
+    {
+      "name": "newu",
+      "role": "CTO",
+      "salary": "44",
+      "managerId": "4",
+      "photo": {
+        "0": {}
+      },
+      "id": 24
+    },
+    {
+      "name": "after",
+      "role": "Tech Lead",
+      "salary": "5959",
+      "managerId": "3",
+      "photo": {
+        "0": {}
+      },
+      "id": 25
+    },
+    {
+      "name": "abrham tafere",
+      "role": "Product Owner",
+      "salary": "44444",
+      "managerId": "4",
+      "photo": {
+        "0": {}
+      },
+      "id": 26
+    },
+    {
+      "name": "ab",
+      "role": "HR",
+      "salary": "33333",
+      "managerId": "2",
+      "photo": {
+        "0": {}
+      },
+      "id": 27
     }
   ]
 }

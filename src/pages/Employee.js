@@ -1,30 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { OrganizationChart } from 'primereact/organizationchart';
-import axios from 'axios';
 import { generateTreeData2 } from '../component/generateTreeData2';
+import { useSelector } from 'react-redux';
 
 export default function SelectionDemo() {
     const [selection, setSelection] = useState([]);
-    const [data, setData] = useState(null);
+    // const [data, setData] = useState(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get("http://localhost:4000/employees");
-                setData(response.data);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, []);
+    const { employee } = useSelector((state) => state.employeeman);
 
-    if (!data) {
+    if (!employee) {
         // Render a loading spinner or message until data is fetched
         return <div>Loading...</div>
     }
     
-    const treeData = generateTreeData2(data);
+    const treeData = generateTreeData2(employee);
     
     const nodeTemplate = (node) => {
         if (node.type === 'person') {
@@ -47,4 +37,6 @@ export default function SelectionDemo() {
             <OrganizationChart value={treeData} selectionMode="multiple" selection={selection} onSelectionChange={(e) => setSelection(e.data)} nodeTemplate={nodeTemplate} />
         </div>
     )
-}
+}  
+  
+ // load 

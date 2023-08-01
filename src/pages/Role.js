@@ -3,6 +3,8 @@ import { Tree } from 'primereact/tree';
 import { OrganizationChart } from 'primereact/organizationchart';
 import { generateTreeData } from './generateTreeData';
 import axios from "axios";
+import { useSelector } from "react-redux";
+// import { setData } from "../redux/employeeSlice";
 
 export default function Role() {
   const [data2, setData2] = useState([
@@ -159,41 +161,25 @@ export default function Role() {
     //   "numEmployees": 0
     // }
   ]);
-  const [data, setData] = useState(null);
+  // const [data, setData] = useState(null);
+  const { role } = useSelector((state) => state.employeeman);
+
   
-  
- 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/roles");
-        setData(response.data);
-        console.log(data)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData(); 
-  }, []);
-  
-  if (!data) {
+  if (!role) {
     console.log('loading')
     // Render a loading spinner or message until data is fetched
     return <div>Loading...</div>
   }
-    
-
-  // const treeData2 = generateTreeData(data2);
-  // console.log(treeData2)
-  const treeData = generateTreeData(data);
+ 
+  const treeData = generateTreeData(role);
 
   return (
-    <div className="flex bg-green-400 justify-center min-h-screen xbg-gradient-to-br from-blue-300 to-purple-500">
+    <div className="flex bg-green-400 justify-center min-h-screen bg-gradient-to-br from-blue-300 to-purple-500">
         {/* <h3>Organizational Chart</h3> */}
       <div className="card overflow-x-auto mt-20">
         {/* <Tree value={treeData} /> //add as an option for the user */}
         {/* <OrganizationChart value={treeData} /> */}
-        {data && (
+        {role && (
           <OrganizationChart
             value={treeData}
             // nodeTemplate={nodeTemplate}

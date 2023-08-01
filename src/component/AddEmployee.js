@@ -5,6 +5,7 @@ import axios from "axios";
 const AddEmployee = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [roles, setRoles] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const fetchRoles = async () => {
@@ -25,6 +26,13 @@ const AddEmployee = () => {
         data
       );
       console.log(response.data);
+      setSuccessMessage("Employee added successfully!");
+      setTimeout(() => {
+        setSuccessMessage("");
+        // Redirect to employee table page
+      window.location.href = "/employee";
+      }, 3000);
+      
     } catch (error) {
       console.error(error);
     }
@@ -33,6 +41,12 @@ const AddEmployee = () => {
   return (
     <div className="max-w-lg mx-auto my-8 p-8 bg-gray-200 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Add Employee</h2>
+      {successMessage && (
+        <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+          <p className="font-bold">Success</p>
+          <p>{successMessage}</p>
+        </div>
+      )}
       <form onSubmit={handleSubmit(onSubmitForm)}>
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700 font-bold mb-2">

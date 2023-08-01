@@ -10,24 +10,13 @@ import {
 } from "@mantine/core";
 import axios from "axios";
 import { UpdateEmployee } from "../component/UpdateEmployee";
+import { useDispatch, useSelector } from "react-redux";
+import { setEmployee } from "../redux/employeeSlice";
 
 const PAGE_SIZE = 5; // number of items to display per page
 
 const EmployeeTable = () => {
-  const [data, setData] = useState(null);
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      try { 
-        const response = await axios.get("http://localhost:4000/employees");
-        setData(response.data);
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  const { employee } = useSelector((state) => state.employeeman);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -36,7 +25,22 @@ const EmployeeTable = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [selectedEditEmployee, setSelectedEditEmployee] = useState(null);
 
-  if (!data) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:4000/employee");
+        dispatch(setEmployee(response.data));
+        console.log(employee)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData(); 
+  }, []);
+
+  if (!employee) {
     console.log("loading");
     // Render a loading spinner or message until data is fetched
     return <div>Loading...</div>;
@@ -44,9 +48,9 @@ const EmployeeTable = () => {
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
-  const currentPageData = data.slice(startIndex, endIndex);
+  const currentPageData = employee.slice(startIndex, endIndex);
 
-  const totalPages = Math.ceil(data.length / PAGE_SIZE);
+  const totalPages = Math.ceil(employee.length / PAGE_SIZE);
 
   const handleEdit = (employee) => {
     setSelectedEditEmployee(employee);
@@ -54,14 +58,16 @@ const EmployeeTable = () => {
   };
 
   const handleUpdate = (updatedEmployee) => {
-    const index = data.findIndex(
+    const index = employee.findIndex(
       (employee) => employee.id === updatedEmployee.id
     );
-    setData([
-      ...data.slice(0, index),
-      updatedEmployee,
-      ...data.slice(index + 1),
-    ]);
+    dispatch(
+      setEmployee([
+        ...employee.slice(0, index),
+        updatedEmployee,
+        ...employee.slice(index + 1),
+      ])
+    );
     setIsEditModalOpen(false);
   };
 
@@ -80,9 +86,12 @@ const EmployeeTable = () => {
         `http://localhost:4000/employees/${selectedEmployee.id}`
       );
       // Update the employees state in the parent component by filtering out the deleted employee
-      setData((prevEmployees) =>
-        prevEmployees.filter((emp) => emp.id !== selectedEmployee.id)
+      dispatch(
+        setEmployee((prevEmployees) =>
+          prevEmployees.filter((emp) => emp.id !== selectedEmployee.id)
+        )
       );
+
       setIsDeleteSuccess(true);
       setIsDeleteModalOpen(false);
       setSelectedEmployee(null);
@@ -180,25 +189,27 @@ const EmployeeTable = () => {
         padding="sm"
         zIndex={10000}
       >
-        <Text variant="body1">
-          Are you sure you want to delete{" "}
-          {selectedEmployee && selectedEmployee.name}?
-        </Text>
-        <Button
-          onClick={handleDeleteConfirm}
-          color="red"
-          variant="outline"
-          style={{ marginTop: 10 }}
-        >
-          Delete
-        </Button>
-        <Button
-          onClick={handleDeleteCancel}
-          variant="outline"
-          style={{ marginTop: 10, marginLeft: 10 }}
-        >
-          Cancel
-        </Button>
+        <div style={{ textAlign: "center" }}>
+          <Text variant="body1">
+            Are you sure you want to delete{" "}
+            {selectedEmployee && selectedEmployee.name}?
+          </Text>
+          <Button
+            onClick={handleDeleteConfirm}
+            color="red"
+            variant="outline"
+            style={{ marginTop: 10 }}
+          >
+            Delete
+          </Button>
+          <Button
+            onClick={handleDeleteCancel}
+            variant="outline"
+            style={{ marginTop: 10, marginLeft: 10 }}
+          >
+            Cancel
+          </Button>
+          </div>
       </Modal>
       <Modal
         opened={isEditModalOpen}
