@@ -1,38 +1,46 @@
 import React, { useEffect, useState } from "react";
-import { Table, Text, Button, Pagination, Modal } from "@mantine/core";
+import { Table, Text, Button, Pagination, Modal, Alert } from "@mantine/core";
 import axios from "axios";
 import UpdateRole from "../component/UpdateRole";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmployee, setRole } from "../redux/employeeSlice";
+import { setEmployee, setEditSuccessMessage, setRole } from "../redux/employeeSlice";
+//apiSlice
+import { useGetEmployeesQuery, useGetRolesQuery } from '../redux/apiSlice';
+import { Loading } from "../component/Loading";
 
 const PAGE_SIZE = 5;
 
 const RoleTable = () => {
+
+  const { data: employee, error, isLoading, refetch:refetchEmployee } = useGetEmployeesQuery();
+  const { data: role, isLoading:isLoadingRole, refetch } = useGetRolesQuery();
+
   // const [data, setData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRoleId, setSelectedRoleId] = useState(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isDeleteSuccess, setIsDeleteSuccess] = useState(false);
   const [selectedRoleName, setSelectedRoleName] = useState("");
-  const { role, employee } = useSelector((state) => state.employeeman);
+  const [search, setSearch] = useState("");
+  const [filter, setFilter] = useState("");
+  const {editSuccessMessage } = useSelector((state) => state.employeeman);
+  const [failed, setFailed] = useState(false);
+
+
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-
-        const response = await axios.get("http://localhost:4000/roles");
-        dispatch(setRole(response.data));
-
-        const response2 = await axios.get("http://localhost:4000/employees");
-        dispatch(setEmployee(response2.data));
-
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:4000/roles");
+  //       dispatch(setRole(response.data));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -49,31 +57,61 @@ const RoleTable = () => {
   };
 
   const handleUpdate = async (updatedRole) => {
-    try {
-      const response = await axios.put(
-        `http://localhost:4000/roles/${updatedRole.id}`,
-        updatedRole
-      );
-      // Update the role in the data array
-      const updatedData = role.map((role) =>
-        role.id === response.data.id ? response.data : role
-      );
-      dispatch(setRole(updatedData));
-      // Close the modal
-      setIsModalOpen(false);
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const response = await axios.put(
+    //     `http://localhost:4000/roles/${updatedRole.id}`,
+    //     updatedRole
+    //   );
+    //   // Update the role in the data array
+    //   const updatedData = role.map((role) =>
+    //     role.id === response.data.id ? response.data : role
+    //   ); //i stop here
+    //   dispatch(setRole(updatedData));
+    //   // Close the modal
+    //   setIsModalOpen(false);
+    // } catch (error) {
+    //   console.error(error);
+    // }
+    refetch();
+    dispatch(setEditSuccessMessage('successfully edited'))
+    setIsModalOpen(false);
+    setTimeout(()=>{
+      dispatch(setEditSuccessMessage(''))
+    }, 3000)
   };
 
   const handleDelete = async (id) => {
     try {
+      const isNodeReferenced = role.some((role) =>
+      role.parentId === id
+    );
+
+    if (!isNodeReferenced) {
+      // Delete only if the role is not referenced as a parent node by other nodes
+
       await axios.delete(`http://localhost:4000/roles/${id}`);
-      // Remove the role from the data array
-      const filteredData = role.filter((role) => role.id !== id);
-      dispatch(setRole(filteredData));
-      // Close the delete confirmation modal
-      setIsDeleteModalOpen(false);
+     // Remove the role from the data array
+     refetch();
+     const filteredData = role.filter((role) => role.id !== id);
+     dispatch(setRole(filteredData));
+     setIsDeleteSuccess(true);
+     setIsDeleteModalOpen(false);
+     setTimeout(() => {
+       setIsDeleteSuccess(false);
+     }, 3000);
+   } else {
+     // Handle case where the role is referenced as a parent node
+     console.log("Cannot delete parent nodes");
+     setFailed(true)
+     setIsDeleteModalOpen(false);
+     setTimeout(()=>{
+       setFailed(false)
+     }, 6000)
+     // Or you can show an error message to the user
+   } 
+    //if successfull
+   setIsDeleteModalOpen(false);
+    
     } catch (error) {
       console.error(error);
     }
@@ -93,17 +131,26 @@ const RoleTable = () => {
 
   if (!employee) {
     // Render a loading spinner or message until data is fetched
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (!role) {
     // Render a loading spinner or message until data is fetched
-    return <div>Loading...</div>;
+    return <Loading />;
   }
+
+  //filter based on the search and filter values
+  const filteredData = role.filter(
+    (emp) =>
+      emp.name.toLowerCase().includes(search.toLowerCase()) &&
+      // || emp.role.toLowerCase().includes(search.toLowerCase())
+      (filter === "" || emp.role === filter)
+    // (filter === "" || (emp.role === filter && emp.salary >= filterSalary))
+  );
 
   const startIndex = (currentPage - 1) * PAGE_SIZE;
   const endIndex = startIndex + PAGE_SIZE;
-  const pageData = role.slice(startIndex, endIndex);
+  const pageData = filteredData.slice(startIndex, endIndex);
 
   const getNumEmployeesByRole = (role) => {
     return employee.filter(emp => emp.role === role).length;
@@ -112,6 +159,61 @@ const RoleTable = () => {
 
   return (
     <div className="p-4">
+      {/* for delete */}
+      {isDeleteSuccess && ( //use redux to display it in other place
+        <Alert
+          color="green"
+          title="Role deleted successfully."
+          onClose={() => setIsDeleteSuccess(false)}
+          style={{ marginBottom: "1rem" }}
+        />
+      )}
+
+      {/* for failed or not possible */}
+      {failed && ( //use redux to display it in other place
+        <Alert
+          color="red"
+          title="Cannot delete parent roles! Try to delete first its children"
+          onClose={() => setFailed(false)}
+          style={{ marginBottom: "1rem" }}
+        />
+      )}
+      {/* for edit */}
+      {editSuccessMessage && (
+        <div
+          className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"
+          role="alert"
+        >
+          <p className="font-bold">Success</p>
+          <p>{editSuccessMessage}</p>
+        </div>
+      )}
+
+<div className="flex justify-end">
+        <div className="pr-4">
+          <input
+            type="text"
+            placeholder="Search by name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="px-2 py-1 border rounded-md"
+          />
+        </div>
+        {/* <div>
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="px-2 py-1 border rounded-md"
+          >
+            <option value="">Filter by role</option>
+            {role.map((rol) => (
+              <option key={rol.id} value={rol.name}>
+                {rol.name}
+              </option>
+            ))}
+          </select>
+        </div> */}
+      </div>
       <Table striped>
         <thead>
           <tr>
@@ -160,9 +262,9 @@ const RoleTable = () => {
         Showing {startIndex + 1} to {endIndex} of {role.length} roles
       </Text>
       <Pagination
-        total={Math.ceil(role.length / PAGE_SIZE)}
+        total={Math.ceil(filteredData.length / PAGE_SIZE)}
         style={{ marginTop: "20px" }}
-        pages={Math.ceil(role.length / PAGE_SIZE)}
+        pages={Math.ceil(filteredData.length / PAGE_SIZE)}
         page={currentPage}
         onChange={handlePageChange}
       />
@@ -178,6 +280,7 @@ const RoleTable = () => {
           onUpdate={handleUpdate}
           onClose={handleCloseModal}
         />
+        
       </Modal>
 
       <Modal

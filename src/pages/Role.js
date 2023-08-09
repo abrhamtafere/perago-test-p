@@ -5,8 +5,14 @@ import { generateTreeData } from './generateTreeData';
 import axios from "axios";
 import { useSelector } from "react-redux";
 // import { setData } from "../redux/employeeSlice";
+import { useGetEmployeesQuery, useGetRolesQuery } from '../redux/apiSlice';
+import { Loading } from "../component/Loading";
 
 export default function Role() {
+
+  const { data: employee, error, isLoading } = useGetEmployeesQuery();
+  const { data: role, isLoading:isLoadingRole, refetch } = useGetRolesQuery();
+
   const [data2, setData2] = useState([
     {
       "id": 1,
@@ -162,13 +168,16 @@ export default function Role() {
     // }
   ]);
   // const [data, setData] = useState(null);
-  const { role } = useSelector((state) => state.employeeman);
+  // const { role } = useSelector((state) => state.employeeman);
 
+  useEffect(() => {
+    refetch()
+  }, []);
   
-  if (!role) {
+  if (isLoadingRole || isLoading) {
     console.log('loading')
     // Render a loading spinner or message until data is fetched
-    return <div>Loading...</div>
+    return <Loading />
   }
  
   const treeData = generateTreeData(role);

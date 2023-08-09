@@ -230,7 +230,7 @@
       "id": 2,
       "name": "CTO",
       "hasAParent": true,
-      "parentId": 1,
+      "parentId": "2",
       "childrenId": [],
       "numEmployees": 0
     },
@@ -362,57 +362,25 @@
     },
     {
       "id": 18,
-      "name": "Other DevOps Roles",
+      "name": "Other DevOps Roles ",
       "hasAParent": true,
       "parentId": 7,
       "childrenId": [],
       "numEmployees": 0
     },
     {
-      "id": 19,
-      "name": "FB",
-      "hasAParent": true,
-      "parentId": 2,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 21,
-      "name": "CHH",
-      "hasAParent": true,
-      "parentId": 1,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
       "id": 22,
-      "name": "Anfular Developer",
+      "name": "Angular Developer",
       "hasAParent": true,
       "parentId": 4,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 23,
-      "name": "CEO",
-      "hasAParent": true,
-      "parentId": 4,
-      "childrenId": [],
-      "numEmployees": 0
-    },
-    {
-      "id": 24,
-      "name": "CEO",
-      "hasAParent": true,
-      "parentId": 1,
       "childrenId": [],
       "numEmployees": 0
     },
     {
       "id": 25,
-      "name": "ceo",
+      "name": "next js developer",
       "hasAParent": true,
-      "parentId": 6,
+      "parentId": 10,
       "childrenId": [],
       "numEmployees": 0
     }
@@ -420,7 +388,7 @@
   "employees": [
     {
       "id": 1,
-      "name": "John Doe",
+      "name": "John Doe8mlk",
       "role": "CEO",
       "salary": 150000,
       "managerId": null,
@@ -581,7 +549,7 @@
       "id": 21
     },
     {
-      "name": "abrhame",
+      "name": "abrham",
       "role": "HR",
       "salary": "42",
       "managerId": "1",
@@ -631,39 +599,9 @@
       "id": 26
     },
     {
-      "name": "ab",
+      "name": "Test",
       "role": "HR",
-      "salary": "33333",
-      "managerId": "2",
-      "photo": {
-        "0": {}
-      },
-      "id": 27
-    },
-    {
-      "name": "test employee ree",
-      "role": "CEO",
-      "salary": "40000",
-      "managerId": "3",
-      "photo": {
-        "0": {}
-      },
-      "id": 28
-    },
-    {
-      "name": "Abrham Tafere",
-      "role": "CTO",
-      "salary": "34000",
-      "managerId": "1",
-      "photo": {
-        "0": {}
-      },
-      "id": 29
-    },
-    {
-      "name": "dd",
-      "role": "FB",
-      "salary": "33",
+      "salary": "89",
       "managerId": "3",
       "photo": {
         "0": {}
@@ -671,14 +609,134 @@
       "id": 30
     },
     {
-      "name": "Abrham Tafere",
-      "role": "CTO",
-      "salary": "34000",
-      "managerId": "1",
+      "name": "Bob Tomson",
+      "role": "HR",
+      "salary": "5999",
+      "managerId": "3",
       "photo": {
         "0": {}
       },
       "id": 31
+    },
+    {
+      "name": "Hua",
+      "role": "Scrum Master",
+      "salary": "7500",
+      "managerId": "1",
+      "photo": {
+        "0": {}
+      },
+      "id": 32
+    },
+    {
+      "name": "gg",
+      "role": "FB",
+      "salary": "55",
+      "managerId": "1",
+      "photo": {
+        "0": {}
+      },
+      "id": 33
+    },
+    {
+      "name": "abrham tafere 7",
+      "role": "Other Backend Roles",
+      "salary": "8999",
+      "managerId": "7",
+      "photo": {
+        "0": {}
+      },
+      "id": 34
+    },
+    {
+      "name": "abrhame",
+      "role": "QA Engineer",
+      "salary": "33333",
+      "managerId": "2",
+      "photo": {
+        "0": {}
+      },
+      "id": 35
+    },
+    {
+      "name": "Eliyas Tafere",
+      "role": "CTO",
+      "salary": "89000",
+      "managerId": "1",
+      "photo": {
+        "0": {}
+      },
+      "id": 36
+    },
+    {
+      "name": "e",
+      "role": "Account and Payable",
+      "salary": "33",
+      "managerId": "3",
+      "photo": {
+        "0": {}
+      },
+      "id": 37
+    },
+    {
+      "name": "abrham",
+      "role": "Anfular Developer",
+      "salary": "222",
+      "managerId": "2",
+      "photo": {
+        "0": {}
+      },
+      "id": 38
+    },
+    {
+      "name": "a",
+      "role": "HR",
+      "salary": "900",
+      "managerId": "1",
+      "photo": {
+        "0": {}
+      },
+      "id": 39
+    },
+    {
+      "name": "yyyy",
+      "role": "Frontend Developer",
+      "salary": "5555",
+      "managerId": "2",
+      "photo": {
+        "0": {}
+      },
+      "id": 40
+    },
+    {
+      "name": "ee",
+      "role": "Tech Lead",
+      "salary": "22",
+      "managerId": "1",
+      "photo": {
+        "0": {}
+      },
+      "id": 41
+    },
+    {
+      "name": "test Employeee",
+      "role": "CFO",
+      "salary": "3232",
+      "managerId": "3",
+      "photo": {
+        "0": {}
+      },
+      "id": 42
+    },
+    {
+      "name": "abrham212",
+      "role": "CFO",
+      "salary": "121212",
+      "managerId": "2",
+      "photo": {
+        "0": {}
+      },
+      "id": 43
     }
   ]
 }

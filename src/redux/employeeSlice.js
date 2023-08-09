@@ -12,6 +12,8 @@ import axios from "axios";
 const initialState = {
   role: null,
   employee: null,
+  addSuccessMessage: "",
+  editSuccessMessage: "",
 };
 
 export const employeeSlice = createSlice({
@@ -24,11 +26,17 @@ export const employeeSlice = createSlice({
     setEmployee: (state, action) => {
       state.employee = action.payload;
     },
+    setAddSuccessMessage: (state, action) => {
+      state.addSuccessMessage = action.payload;
+    },
+    setEditSuccessMessage: (state, action) => {
+      state.editSuccessMessage = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setRole, setEmployee, incrementByAmount } =
+export const { setRole, setEmployee, incrementByAmount, setAddSuccessMessage, setEditSuccessMessage } =
   employeeSlice.actions;
 
 export default employeeSlice.reducer;

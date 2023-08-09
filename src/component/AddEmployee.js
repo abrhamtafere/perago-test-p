@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { setAddSuccessMessage } from "../redux/employeeSlice";
+import { useNavigate } from 'react-router-dom';
 
 const AddEmployee = () => {
+  //to redirect a page
+  const navigate = useNavigate();
+
+  const { addSuccessMessage } = useSelector((state) => state.employeeman);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [roles, setRoles] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
-
+//setAddSuccessMessage
+const dispatch = useDispatch();
   useEffect(() => {
     const fetchRoles = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/roles");
-        setRoles(response.data);
+        const response = await axios.get("http://localhost:4000/roles"); 
+        setRoles(response.data); 
       } catch (error) {
         console.error(error);
       }
@@ -26,13 +34,11 @@ const AddEmployee = () => {
         data
       );
       console.log(response.data);
-      setSuccessMessage("Employee added successfully!");
-      setTimeout(() => {
-        setSuccessMessage("");
+      dispatch(setAddSuccessMessage("Employee added successfully!"));
         // Redirect to employee table page
-      window.location.href = "/employee";
-      }, 3000);
-      
+        //redirect
+      // window.location.href = "/employee";
+      navigate('/employee');
     } catch (error) {
       console.error(error);
     }
@@ -41,10 +47,10 @@ const AddEmployee = () => {
   return (
     <div className="max-w-lg mx-auto my-8 p-8 bg-gray-200 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-4">Add Employee</h2>
-      {successMessage && (
+      {addSuccessMessage && (
         <div className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
           <p className="font-bold">Success</p>
-          <p>{successMessage}</p>
+          <p>{addSuccessMessage}</p>
         </div>
       )}
       <form onSubmit={handleSubmit(onSubmitForm)}>

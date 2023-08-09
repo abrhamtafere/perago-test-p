@@ -60,6 +60,8 @@ const AddRole = () => {
         setSuccessMessage("");
         setErrorMessage("Error adding role.");
       });
+      //redirect
+      window.location.href = "/role";
   };
 
   const handleParentChange = (event) => {

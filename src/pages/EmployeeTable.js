@@ -11,13 +11,40 @@ import {
 import axios from "axios";
 import { UpdateEmployee } from "../component/UpdateEmployee";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmployee } from "../redux/employeeSlice";
+import { setAddSuccessMessage, setEditSuccessMessage, setEmployee } from "../redux/employeeSlice";
 import { Loading } from "../component/Loading";
+import { useHistory } from 'react-router-dom';
+//apiSlice
+import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
 
 const PAGE_SIZE = 5; // number of items to display per page
 
 const EmployeeTable = () => {
-  const { employee, role } = useSelector((state) => state.employeeman);
+  const { addSuccessMessage, editSuccessMessage } = useSelector((state) => state.employeeman);
+  // const { employee, role } = useSelector((state) => state.employeeman);
+  //apiSlice
+  const { data: employee, error, isLoading, refetch } = useGetEmployeesQuery();
+  const {
+    data: role,
+    isLoading: isLoadingRoles,
+    refetch: refetchRole,
+  } = useGetRolesQuery();
+
+  //to refetch when to render the first time
+  useEffect(() => {
+    refetch()
+  }, []);
+
+  // you can use the following to use refetch when to navigate to the specific page
+  // const history = useHistory();
+
+  // useEffect(() => {
+  //   history.listen((location) => {
+  //     if (location.pathname === '/employee') {
+  //       window.location.reload();
+  //     }
+  //   });
+  // }, [history]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -30,26 +57,40 @@ const EmployeeTable = () => {
   const [sortSalaryOrder, setSortSalaryOrder] = useState(""); //optional
   const [sortField, setSortField] = useState("id"); // Default sorting field
   const [sortId, setSortId] = useState("asc"); // Default sorting asc
-
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("http://localhost:4000/employee");
-        dispatch(setEmployee(response.data));
-        console.log(employee);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
+  if (isLoading) {
+    dispatch(setEmployee(employee));
+    console.log("after set ", employee);
+  }
+  // useEffect(() => {
+  //   // Dispatch the data to the Redux store
+  //  if(!isLoading){
+  //    console.log('inside', employee);
+  //
+  //   // console.log('employee', employee);
+  //   // dispatch(setEmployee(employee))
+  // }, []);
 
-  if (!employee) {
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:4000/employee");
+  //       dispatch(setEmployee(response.data));
+  //       console.log(employee);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
+  if (isLoading || !role) {
     // Render a loading spinner or message until data is fetched
     return <Loading />;
   }
+  console.log("employeeafload", employee);
+  console.log("emdata", employee);
 
   //for sorting
   // const sortedData = [...employee].sort((a, b) => {
@@ -65,7 +106,9 @@ const EmployeeTable = () => {
     if (sortField === "id") {
       return sortId === "asc" ? a.id - b.id : b.id - a.id;
     } else if (sortField === "salary") {
-      return sortSalaryOrder === "asc" ? a.salary - b.salary : b.salary - a.salary;
+      return sortSalaryOrder === "asc"
+        ? a.salary - b.salary
+        : b.salary - a.salary;
     }
     return 0;
   };
@@ -76,8 +119,8 @@ const EmployeeTable = () => {
   //filter based on the search and filter values
   const filteredData = sortedData.filter(
     (emp) =>
-      (emp.name.toLowerCase().includes(search.toLowerCase()) ||
-        emp.role.toLowerCase().includes(search.toLowerCase())) &&
+      emp.name.toLowerCase().includes(search.toLowerCase()) &&
+      // || emp.role.toLowerCase().includes(search.toLowerCase())
       (filter === "" || emp.role === filter)
     // (filter === "" || (emp.role === filter && emp.salary >= filterSalary))
   );
@@ -101,14 +144,21 @@ const EmployeeTable = () => {
     const index = employee.findIndex(
       (employee) => employee.id === updatedEmployee.id
     );
-    dispatch(
-      setEmployee([
-        ...employee.slice(0, index),
-        updatedEmployee,
-        ...employee.slice(index + 1),
-      ])
-    );
+
+    // here usefull algorithm
+    // dispatch(
+    //   setEmployee([
+    //     ...employee.slice(0, index),
+    //     updatedEmployee,
+    //     ...employee.slice(index + 1),
+    //   ])
+    //   );
+    refetch();
+    dispatch(setEditSuccessMessage('successfully edited'));
     setIsEditModalOpen(false);
+    setTimeout(() => {
+      dispatch(setEditSuccessMessage(''));
+    }, 3000)
   };
 
   const handleDelete = async (employee) => {
@@ -126,12 +176,15 @@ const EmployeeTable = () => {
         `http://localhost:4000/employees/${selectedEmployee.id}`
       );
       // Update the employees state in the parent component by filtering out the deleted employee
+      //
+      /* here is a usefull algorithm
       dispatch(
         setEmployee((prevEmployees) =>
           prevEmployees.filter((emp) => emp.id !== selectedEmployee.id)
         )
       );
-
+      */
+      refetch();
       setIsDeleteSuccess(true);
       setIsDeleteModalOpen(false);
       setSelectedEmployee(null);
@@ -148,8 +201,34 @@ const EmployeeTable = () => {
     setSelectedEmployee(null);
   };
 
+  // if(addSuccessMessage){
+  setTimeout(() => {
+    dispatch(setAddSuccessMessage(""));
+  }, 3000);
+  // }
+  
+  console.log("success message: ", addSuccessMessage);
   return (
     <div className="container mx-auto p-2">
+      {addSuccessMessage && (
+        <div
+          className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"
+          role="alert"
+        >
+          <p className="font-bold">Success</p>
+          <p>{addSuccessMessage}</p>
+        </div>
+      )}
+      {editSuccessMessage && (
+        <div
+          className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"
+          role="alert"
+        >
+          <p className="font-bold">Success</p>
+          <p>{editSuccessMessage}</p>
+        </div>
+      )}
+      <span></span>
       {isDeleteSuccess && ( //use redux to display it in other place
         <Alert
           color="green"
@@ -190,14 +269,21 @@ const EmployeeTable = () => {
             <th>
               Id
               <button
-                onClick={() =>{
-                  setSortField('id')
-                  setSortId(sortId === "asc" ? "desc" : "asc")
-                }
-                }
+                onClick={() => {
+                  setSortField("id");
+                  setSortId(sortId === "asc" ? "desc" : "asc");
+                }}
                 className={`ml-2`}
               >
-                {sortField === 'id'? (sortId === "asc" ? "▲" : "▼") : <span>&#8597;</span>}
+                {sortField === "id" ? (
+                  sortId === "asc" ? (
+                    "▲"
+                  ) : (
+                    "▼"
+                  )
+                ) : (
+                  <span>&#8597;</span>
+                )}
               </button>
             </th>
             <th>Name</th>
@@ -206,14 +292,23 @@ const EmployeeTable = () => {
             <th>
               Salary
               <button
-                onClick={() =>{
-                  setSortField('salary')
-                  setSortSalaryOrder(sortSalaryOrder === "asc" ? "desc" : "asc")
-                }
-                }
+                onClick={() => {
+                  setSortField("salary");
+                  setSortSalaryOrder(
+                    sortSalaryOrder === "asc" ? "desc" : "asc"
+                  );
+                }}
                 className="ml-2"
               >
-                {sortField === 'salary'? (sortSalaryOrder === "asc" ? "▲" : "▼") : <span>&#8597;</span>}
+                {sortField === "salary" ? (
+                  sortSalaryOrder === "asc" ? (
+                    "▲"
+                  ) : (
+                    "▼"
+                  )
+                ) : (
+                  <span>&#8597;</span>
+                )}
               </button>
             </th>
             <th>Manager Id</th>
