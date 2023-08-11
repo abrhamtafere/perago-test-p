@@ -181,9 +181,10 @@ export default function Role() {
   }
  
   const treeData = generateTreeData(role);
-
+console.log('tree data: ', treeData)
   return (
-    <div className="flex bg-green-400 justify-center min-h-screen bg-gradient-to-br from-blue-300 to-purple-500">
+    <div className="flex justify-center min-h-screen bg-gray-100">
+      {/*  bg-gradient-to-br from-green-100 to-white-100 */}
         {/* <h3>Organizational Chart</h3> */}
       <div className="card overflow-x-auto mt-20">
         {/* <Tree value={treeData} /> //add as an option for the user */}

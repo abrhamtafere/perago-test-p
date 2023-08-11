@@ -1,7 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { notifications } from "@mantine/notifications";
+import { RiCheckboxCircleLine } from 'react-icons/ri'
+import { useNavigate } from "react-router-dom";
 
 const AddRole = () => {
+    //to redirect a page
+    const navigate = useNavigate();
+
   const [roleName, setRoleName] = useState("");
   // const [description, setDescription] = useState('');
   const [parentRoles, setParentRoles] = useState([]);
@@ -52,7 +58,17 @@ const AddRole = () => {
         setRoleName("");
         // setDescription('');
         setSelectedParentId(null);
-        setSuccessMessage("Role added successfully.");
+        // setSuccessMessage("Role added successfully.");
+        notifications.show({
+          title: "Success",
+          message: "Role added successfully.",
+          autoClose: 5000,
+          color: "green",
+          icon: <RiCheckboxCircleLine />,
+          withBorder: true,
+          // style: { backgroundColor: 'green' },
+          // onClose: () => setEditSuccessMessage(null),
+        });
         setErrorMessage("");
       })
       .catch((error) => {
@@ -61,7 +77,9 @@ const AddRole = () => {
         setErrorMessage("Error adding role.");
       });
       //redirect
-      window.location.href = "/role";
+      // window.location.href = "/role";
+      navigate("/role");
+       
   };
 
   const handleParentChange = (event) => {

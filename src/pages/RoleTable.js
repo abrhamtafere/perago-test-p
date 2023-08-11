@@ -3,17 +3,27 @@ import { Table, Text, Button, Pagination, Modal, Alert } from "@mantine/core";
 import axios from "axios";
 import UpdateRole from "../component/UpdateRole";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmployee, setEditSuccessMessage, setRole } from "../redux/employeeSlice";
+import {
+  setEmployee,
+  setEditSuccessMessage,
+  setRole,
+} from "../redux/employeeSlice";
 //apiSlice
-import { useGetEmployeesQuery, useGetRolesQuery } from '../redux/apiSlice';
+import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
 import { Loading } from "../component/Loading";
+import { notifications } from "@mantine/notifications";
+import { RiCheckboxCircleLine, RiErrorWarningLine } from "react-icons/ri";
 
 const PAGE_SIZE = 5;
 
 const RoleTable = () => {
-
-  const { data: employee, error, isLoading, refetch:refetchEmployee } = useGetEmployeesQuery();
-  const { data: role, isLoading:isLoadingRole, refetch } = useGetRolesQuery();
+  const {
+    data: employee,
+    error,
+    isLoading,
+    refetch: refetchEmployee,
+  } = useGetEmployeesQuery();
+  const { data: role, isLoading: isLoadingRole, refetch } = useGetRolesQuery();
 
   // const [data, setData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,9 +34,6 @@ const RoleTable = () => {
   const [selectedRoleName, setSelectedRoleName] = useState("");
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
-  const {editSuccessMessage } = useSelector((state) => state.employeeman);
-  const [failed, setFailed] = useState(false);
-
 
   const dispatch = useDispatch();
 
@@ -73,45 +80,60 @@ const RoleTable = () => {
     //   console.error(error);
     // }
     refetch();
-    dispatch(setEditSuccessMessage('successfully edited'))
+    notifications.show({
+      title: "Success",
+      message: "successfully edited",
+      autoClose: 5000,
+      color: "green",
+      icon: <RiCheckboxCircleLine />,
+      withBorder: true,
+      // style: { backgroundColor: 'green' },
+      // onClose: () => setEditSuccessMessage(null),
+    });
     setIsModalOpen(false);
-    setTimeout(()=>{
-      dispatch(setEditSuccessMessage(''))
-    }, 3000)
   };
 
   const handleDelete = async (id) => {
     try {
-      const isNodeReferenced = role.some((role) =>
-      role.parentId === id
-    );
+      const isNodeReferenced = role.some((role) => role.parentId === id);
 
-    if (!isNodeReferenced) {
-      // Delete only if the role is not referenced as a parent node by other nodes
+      if (!isNodeReferenced) {
+        // Delete only if the role is not referenced as a parent node by other nodes
 
-      await axios.delete(`http://localhost:4000/roles/${id}`);
-     // Remove the role from the data array
-     refetch();
-     const filteredData = role.filter((role) => role.id !== id);
-     dispatch(setRole(filteredData));
-     setIsDeleteSuccess(true);
-     setIsDeleteModalOpen(false);
-     setTimeout(() => {
-       setIsDeleteSuccess(false);
-     }, 3000);
-   } else {
-     // Handle case where the role is referenced as a parent node
-     console.log("Cannot delete parent nodes");
-     setFailed(true)
-     setIsDeleteModalOpen(false);
-     setTimeout(()=>{
-       setFailed(false)
-     }, 6000)
-     // Or you can show an error message to the user
-   } 
-    //if successfull
-   setIsDeleteModalOpen(false);
-    
+        await axios.delete(`http://localhost:4000/roles/${id}`);
+        // Remove the role from the data array
+        refetch();
+        const filteredData = role.filter((role) => role.id !== id);
+        dispatch(setRole(filteredData));
+        notifications.show({
+          withBorder: true,
+          title: "Success",
+          message: "successfully deleted",
+          autoClose: 5000,
+          color: "green",
+          icon: <RiCheckboxCircleLine />,
+
+          // onClose: () => setEditSuccessMessage(null),
+        });
+        setIsDeleteModalOpen(false);
+      } else {
+        // Handle case where the role is referenced as a parent node
+        console.log("Cannot delete parent nodes");
+        notifications.show({
+          withBorder: true,
+          title: "Failed",
+          message: "Cannot delete parent roles! Try to delete first its children!",
+          autoClose: 5000,
+          color: "red",
+          icon: <RiErrorWarningLine />,
+          withBorder: true,
+          // style: { backgroundColor: 'green' },
+          // onClose: () => setEditSuccessMessage(null),
+        });
+        setIsDeleteModalOpen(false);
+      }
+      //if successfull
+      setIsDeleteModalOpen(false);
     } catch (error) {
       console.error(error);
     }
@@ -153,43 +175,12 @@ const RoleTable = () => {
   const pageData = filteredData.slice(startIndex, endIndex);
 
   const getNumEmployeesByRole = (role) => {
-    return employee.filter(emp => emp.role === role).length;
-  }
-
+    return employee.filter((emp) => emp.role === role).length;
+  };
 
   return (
     <div className="p-4">
-      {/* for delete */}
-      {isDeleteSuccess && ( //use redux to display it in other place
-        <Alert
-          color="green"
-          title="Role deleted successfully."
-          onClose={() => setIsDeleteSuccess(false)}
-          style={{ marginBottom: "1rem" }}
-        />
-      )}
-
-      {/* for failed or not possible */}
-      {failed && ( //use redux to display it in other place
-        <Alert
-          color="red"
-          title="Cannot delete parent roles! Try to delete first its children"
-          onClose={() => setFailed(false)}
-          style={{ marginBottom: "1rem" }}
-        />
-      )}
-      {/* for edit */}
-      {editSuccessMessage && (
-        <div
-          className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"
-          role="alert"
-        >
-          <p className="font-bold">Success</p>
-          <p>{editSuccessMessage}</p>
-        </div>
-      )}
-
-<div className="flex justify-end">
+      <div className="flex justify-end">
         <div className="pr-4">
           <input
             type="text"
@@ -267,6 +258,14 @@ const RoleTable = () => {
         pages={Math.ceil(filteredData.length / PAGE_SIZE)}
         page={currentPage}
         onChange={handlePageChange}
+        styles={(theme) => ({
+          control: {
+            "&[data-active]": {
+              backgroundImage: theme.fn.gradient({ from: "red", to: "yellow" }),
+              border: 0,
+            },
+          },
+        })}
       />
       <Modal
         opened={isModalOpen}
@@ -280,40 +279,39 @@ const RoleTable = () => {
           onUpdate={handleUpdate}
           onClose={handleCloseModal}
         />
-        
       </Modal>
 
       <Modal
-  opened={isDeleteModalOpen}
-  onClose={handleDeleteCancel}
-  size="sm"
-  title="Confirm Delete"
-  padding="sm"
-  zIndex={10000}
->
-  <div style={{ textAlign: "center" }}>
-    <Text variant="body1" style={{ marginBottom: 10 }}>
-      Are you sure you want to delete {selectedRoleName}?
-    </Text>
-    <div style={{ display: "flex", justifyContent: "center" }}>
-      <Button
-        onClick={() => handleDelete(selectedRoleId)}
-        color="red"
-        variant="outline"
-        style={{ marginRight: 10 }}
+        opened={isDeleteModalOpen}
+        onClose={handleDeleteCancel}
+        size="sm"
+        title="Confirm Delete"
+        padding="sm"
+        zIndex={10000}
       >
-        Delete
-      </Button>
-      <Button
-        onClick={handleDeleteCancel}
-        variant="outline"
-        style={{ marginLeft: 10 }}
-      >
-        Cancel
-      </Button>
-    </div>
-  </div>
-</Modal>
+        <div style={{ textAlign: "center" }}>
+          <Text variant="body1" style={{ marginBottom: 10 }}>
+            Are you sure you want to delete {selectedRoleName}?
+          </Text>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              onClick={() => handleDelete(selectedRoleId)}
+              color="red"
+              variant="outline"
+              style={{ marginRight: 10 }}
+            >
+              Delete
+            </Button>
+            <Button
+              onClick={handleDeleteCancel}
+              variant="outline"
+              style={{ marginLeft: 10 }}
+            >
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 };

@@ -230,9 +230,14 @@
       "id": 2,
       "name": "CTO",
       "hasAParent": true,
-      "parentId": "2",
-      "childrenId": [],
-      "numEmployees": 0
+      "parentId": 1,
+      "childrenId": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "numEmployees": 4
     },
     {
       "id": 3,
@@ -251,6 +256,16 @@
       "parentId": 1,
       "childrenId": [
         8
+      ],
+      "numEmployees": 1
+    },
+    {
+      "id": 5,
+      "name": "Product Owner ",
+      "hasAParent": true,
+      "parentId": 2,
+      "childrenId": [
+        10
       ],
       "numEmployees": 1
     },
@@ -362,25 +377,25 @@
     },
     {
       "id": 18,
-      "name": "Other DevOps Roles ",
+      "name": "Other DevOps Roles",
       "hasAParent": true,
       "parentId": 7,
       "childrenId": [],
       "numEmployees": 0
     },
     {
-      "id": 22,
-      "name": "Angular Developer",
+      "id": 19,
+      "name": "Other QA Roles",
       "hasAParent": true,
-      "parentId": 4,
+      "parentId": 6,
       "childrenId": [],
       "numEmployees": 0
     },
     {
-      "id": 25,
-      "name": "next js developer",
+      "id": 20,
+      "name": "NEW ",
       "hasAParent": true,
-      "parentId": 10,
+      "parentId": 2,
       "childrenId": [],
       "numEmployees": 0
     }
@@ -388,7 +403,7 @@
   "employees": [
     {
       "id": 1,
-      "name": "John Doe8mlk",
+      "name": "John Doe j",
       "role": "CEO",
       "salary": 150000,
       "managerId": null,
@@ -669,7 +684,7 @@
       "id": 36
     },
     {
-      "name": "e",
+      "name": "ee",
       "role": "Account and Payable",
       "salary": "33",
       "managerId": "3",
@@ -679,9 +694,9 @@
       "id": 37
     },
     {
-      "name": "abrham",
-      "role": "Anfular Developer",
-      "salary": "222",
+      "name": "ddd",
+      "role": "Account and Payable",
+      "salary": "333",
       "managerId": "2",
       "photo": {
         "0": {}
@@ -689,54 +704,14 @@
       "id": 38
     },
     {
-      "name": "a",
-      "role": "HR",
-      "salary": "900",
+      "name": "abrham john",
+      "role": "CTO",
+      "salary": "90000",
       "managerId": "1",
       "photo": {
         "0": {}
       },
       "id": 39
-    },
-    {
-      "name": "yyyy",
-      "role": "Frontend Developer",
-      "salary": "5555",
-      "managerId": "2",
-      "photo": {
-        "0": {}
-      },
-      "id": 40
-    },
-    {
-      "name": "ee",
-      "role": "Tech Lead",
-      "salary": "22",
-      "managerId": "1",
-      "photo": {
-        "0": {}
-      },
-      "id": 41
-    },
-    {
-      "name": "test Employeee",
-      "role": "CFO",
-      "salary": "3232",
-      "managerId": "3",
-      "photo": {
-        "0": {}
-      },
-      "id": 42
-    },
-    {
-      "name": "abrham212",
-      "role": "CFO",
-      "salary": "121212",
-      "managerId": "2",
-      "photo": {
-        "0": {}
-      },
-      "id": 43
     }
   ]
 }

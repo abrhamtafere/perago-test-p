@@ -4,10 +4,14 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setAddSuccessMessage } from "../redux/employeeSlice";
 import { useNavigate } from 'react-router-dom';
-
+import { notifications } from "@mantine/notifications";
+import { RiCheckboxCircleLine } from 'react-icons/ri';
+import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
+import { Loading } from './Loading';
 const AddEmployee = () => {
   //to redirect a page
   const navigate = useNavigate();
+  const { data: employee, error, isLoading, refetch } = useGetEmployeesQuery();
 
   const { addSuccessMessage } = useSelector((state) => state.employeeman);
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -34,7 +38,17 @@ const dispatch = useDispatch();
         data
       );
       console.log(response.data);
-      dispatch(setAddSuccessMessage("Employee added successfully!"));
+      notifications.show({
+        title: 'Success',
+        message: 'Employee added successfully!',
+        autoClose: 5000,
+        color: 'green',
+        icon: <RiCheckboxCircleLine />,
+        withBorder: true
+        // style: { backgroundColor: 'green' },
+        // onClose: () => setEditSuccessMessage(null),
+      })
+      // dispatch(setAddSuccessMessage("Employee added successfully!"));
         // Redirect to employee table page
         //redirect
       // window.location.href = "/employee";
@@ -43,6 +57,10 @@ const dispatch = useDispatch();
       console.error(error);
     }
   };
+
+  if(isLoading){
+    return <Loading />
+  }
 
   return (
     <div className="max-w-lg mx-auto my-8 p-8 bg-gray-200 rounded-lg shadow-lg">
@@ -126,9 +144,10 @@ const dispatch = useDispatch();
             htmlFor="managerId"
             className="block text-gray-700 font-bold mb-2"
           >
-            Manager ID
+            Manager
           </label>
-          <input
+
+          {/* <input
             name="managerId"
             type="number"
             {...register("managerId", {
@@ -140,7 +159,25 @@ const dispatch = useDispatch();
             className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
               errors.managerId ? "border-red-500" : ""
             }`}
-          />
+          /> */}
+          {/* // */}
+          <select
+            name="managerId"
+            {...register("managerId", {
+              // required: "managerId is required",
+            })}
+            className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+              errors.managerId ? "border-red-500" : ""
+            }`}
+          >
+            <option value="">Select a Manager name</option>
+            {employee.map((emp) => (
+              <option key={emp.id} value={emp.id}>
+                {emp.name}
+              </option>
+            ))}
+          </select>
+          {/*  */}
           {errors.managerId && (
             <p className="text-red-500 mt-2">{errors.managerId.message}</p>
           )}

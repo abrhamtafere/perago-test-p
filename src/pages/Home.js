@@ -68,8 +68,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-green-100 to-purple-100">
-      
+    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <h1 ref={elementRef4} className="flex flex-col  items-center text-4xl font-bold mb-6">
         <p><img src='./images/perago.png' alt='perago' className='inline w-44 h-12'/> Systems</p>
         <p  className=" items-center">Employee Management System</p>

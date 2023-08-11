@@ -16,6 +16,8 @@ import { Loading } from "../component/Loading";
 import { useHistory } from 'react-router-dom';
 //apiSlice
 import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
+import { notifications, Notifications } from '@mantine/notifications';
+import { RiCheckboxCircleLine } from 'react-icons/ri';
 
 const PAGE_SIZE = 5; // number of items to display per page
 
@@ -154,11 +156,21 @@ const EmployeeTable = () => {
     //   ])
     //   );
     refetch();
-    dispatch(setEditSuccessMessage('successfully edited'));
+    // dispatch(setEditSuccessMessage('successfully edited'));
     setIsEditModalOpen(false);
-    setTimeout(() => {
-      dispatch(setEditSuccessMessage(''));
-    }, 3000)
+    notifications.show({
+      title: 'Success',
+      message: 'successfully edited',
+      autoClose: 5000,
+      color: 'green',
+      icon: <RiCheckboxCircleLine />,
+      withBorder: true
+      // style: { backgroundColor: 'green' },
+      // onClose: () => setEditSuccessMessage(null),
+    })
+    // setTimeout(() => {
+    //   dispatch(setEditSuccessMessage(''));
+    // }, 3000)
   };
 
   const handleDelete = async (employee) => {
@@ -186,6 +198,15 @@ const EmployeeTable = () => {
       */
       refetch();
       setIsDeleteSuccess(true);
+      notifications.show({
+        title: 'Success',
+        message: 'successfully deleted',
+      autoClose: 5000,
+      color: 'green',
+      icon: <RiCheckboxCircleLine />,
+        
+        // onClose: () => setEditSuccessMessage(null),
+      })
       setIsDeleteModalOpen(false);
       setSelectedEmployee(null);
       setTimeout(() => {
@@ -201,15 +222,13 @@ const EmployeeTable = () => {
     setSelectedEmployee(null);
   };
 
-  // if(addSuccessMessage){
-  setTimeout(() => {
-    dispatch(setAddSuccessMessage(""));
-  }, 3000);
-  // }
+  if(addSuccessMessage){
+    
+  }
   
   console.log("success message: ", addSuccessMessage);
   return (
-    <div className="container mx-auto p-2">
+    <div className="container mx-auto p-2 ">
       {addSuccessMessage && (
         <div
           className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"
@@ -219,7 +238,7 @@ const EmployeeTable = () => {
           <p>{addSuccessMessage}</p>
         </div>
       )}
-      {editSuccessMessage && (
+      {/* {editSuccessMessage && (
         <div
           className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4"
           role="alert"
@@ -227,8 +246,8 @@ const EmployeeTable = () => {
           <p className="font-bold">Success</p>
           <p>{editSuccessMessage}</p>
         </div>
-      )}
-      <span></span>
+      )} */}
+      {/* <span></span>
       {isDeleteSuccess && ( //use redux to display it in other place
         <Alert
           color="green"
@@ -236,7 +255,7 @@ const EmployeeTable = () => {
           onClose={() => setIsDeleteSuccess(false)}
           style={{ marginBottom: "1rem" }}
         />
-      )}
+      )} */}
       <div className="flex justify-end">
         <div className="pr-4">
           <input
