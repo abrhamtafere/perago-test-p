@@ -390,14 +390,6 @@
       "parentId": 6,
       "childrenId": [],
       "numEmployees": 0
-    },
-    {
-      "id": 20,
-      "name": "NEW ",
-      "hasAParent": true,
-      "parentId": 2,
-      "childrenId": [],
-      "numEmployees": 0
     }
   ],
   "employees": [
@@ -554,36 +546,6 @@
       "photo": "https://example.com/photos/george_lee.jpg"
     },
     {
-      "name": "abrham tafere nn",
-      "role": "BBFE",
-      "salary": "33333333333",
-      "managerId": "2",
-      "photo": {
-        "0": {}
-      },
-      "id": 21
-    },
-    {
-      "name": "abrham",
-      "role": "HR",
-      "salary": "42",
-      "managerId": "1",
-      "photo": {
-        "0": {}
-      },
-      "id": 22
-    },
-    {
-      "name": "ab5",
-      "role": "HR",
-      "salary": "5555555",
-      "managerId": "4",
-      "photo": {
-        "0": {}
-      },
-      "id": 23
-    },
-    {
       "name": "newu",
       "role": "CTO",
       "salary": "44",
@@ -602,16 +564,6 @@
         "0": {}
       },
       "id": 25
-    },
-    {
-      "name": "abrham tafere",
-      "role": "Product Owner",
-      "salary": "44444",
-      "managerId": "4",
-      "photo": {
-        "0": {}
-      },
-      "id": 26
     },
     {
       "name": "Test",
@@ -654,26 +606,6 @@
       "id": 33
     },
     {
-      "name": "abrham tafere 7",
-      "role": "Other Backend Roles",
-      "salary": "8999",
-      "managerId": "7",
-      "photo": {
-        "0": {}
-      },
-      "id": 34
-    },
-    {
-      "name": "abrhame",
-      "role": "QA Engineer",
-      "salary": "33333",
-      "managerId": "2",
-      "photo": {
-        "0": {}
-      },
-      "id": 35
-    },
-    {
       "name": "Eliyas Tafere",
       "role": "CTO",
       "salary": "89000",
@@ -702,16 +634,6 @@
         "0": {}
       },
       "id": 38
-    },
-    {
-      "name": "abrham john",
-      "role": "CTO",
-      "salary": "90000",
-      "managerId": "1",
-      "photo": {
-        "0": {}
-      },
-      "id": 39
     }
   ]
 }

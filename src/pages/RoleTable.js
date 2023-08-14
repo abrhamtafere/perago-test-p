@@ -23,8 +23,8 @@ const RoleTable = () => {
     isLoading,
     refetch: refetchEmployee,
   } = useGetEmployeesQuery();
-  const { data: role, isLoading: isLoadingRole, refetch } = useGetRolesQuery();
-
+  const { data: role, isLoading: isLoadingRole, refetch, setData } = useGetRolesQuery();
+  
   // const [data, setData] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -37,6 +37,7 @@ const RoleTable = () => {
 
   const dispatch = useDispatch();
 
+ 
   // useEffect(() => {
   //   const fetchData = async () => {
   //     try {
@@ -177,7 +178,7 @@ const RoleTable = () => {
   const getNumEmployeesByRole = (role) => {
     return employee.filter((emp) => emp.role === role).length;
   };
-
+  
   return (
     <div className="p-4">
       <div className="flex justify-end">

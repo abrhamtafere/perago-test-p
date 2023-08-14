@@ -59,6 +59,7 @@ const EmployeeTable = () => {
   const [sortSalaryOrder, setSortSalaryOrder] = useState(""); //optional
   const [sortField, setSortField] = useState("id"); // Default sorting field
   const [sortId, setSortId] = useState("asc"); // Default sorting asc
+  const [sortName, setSortName] = useState("asc"); // Default sorting
   const dispatch = useDispatch();
 
   if (isLoading) {
@@ -111,7 +112,11 @@ const EmployeeTable = () => {
       return sortSalaryOrder === "asc"
         ? a.salary - b.salary
         : b.salary - a.salary;
-    }
+    } else if (sortField === "name") {
+      return sortName=== "asc"
+  ? a.name.localeCompare(b.name)
+  : b.name.localeCompare(a.name);
+}
     return 0;
   };
 
@@ -305,7 +310,25 @@ const EmployeeTable = () => {
                 )}
               </button>
             </th>
-            <th>Name</th>
+            <th>Name
+            <button
+                onClick={() => {
+                  setSortField("name");
+                  setSortName(sortName === "asc" ? "desc" : "asc");
+                }}
+                className={`ml-2`}
+              >
+                {sortField === "name" ? (
+                  sortName === "asc" ? (
+                    "▲"
+                  ) : (
+                    "▼"
+                  )
+                ) : (
+                  <span>&#8597;</span>
+                )}
+              </button>
+            </th>
             <th>Role</th>
             {/* <th>Salary</th> */}
             <th>
