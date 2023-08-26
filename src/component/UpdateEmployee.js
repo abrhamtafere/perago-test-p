@@ -1,18 +1,23 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useUpdateEmployeeMutation } from '../redux/apiSlice';
 
 export const UpdateEmployee = ({ employee, onUpdate }) => {
   const [name, setName] = useState(employee.name);
   const [role, setRole] = useState(employee.role);
   const [salary, setSalary] = useState(employee.salary);
 
+  const [updateEmployee, { isLoading }] = useUpdateEmployeeMutation();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const updatedEmployee = { ...employee, name, role, salary };
     try {
-      const response = await axios.put(`http://localhost:4000/employees/${updatedEmployee.id}`, updatedEmployee);
-      onUpdate(response.data); // update parent component state with updated employee data
-    } catch (error) {
+      await updateEmployee(updatedEmployee).unwrap();
+      // const response = await axios.put(`http://localhost:4000/employees/${updatedEmployee.id}`, updatedEmployee);
+      // onUpdate(response.data); // update parent component state with updated employee data
+      onUpdate();
+    } catch (error) { 
       console.log(error);
     }
   };

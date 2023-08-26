@@ -8,6 +8,8 @@ import { notifications } from "@mantine/notifications";
 import { RiCheckboxCircleLine } from 'react-icons/ri';
 import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
 import { Loading } from './Loading';
+import { Widget } from "@uploadcare/react-widget";
+
 const AddEmployee = () => {
   //to redirect a page
   const navigate = useNavigate();
@@ -17,6 +19,8 @@ const AddEmployee = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [roles, setRoles] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
+  const [imageUrl, setImageUrl] = useState('');
+  const [isFileLoaded, setIsFileLoaded] = useState(false);
 //setAddSuccessMessage
 const dispatch = useDispatch();
   useEffect(() => {
@@ -33,11 +37,13 @@ const dispatch = useDispatch();
 
   const onSubmitForm = async (data) => {
     try {   
+      const image = imageUrl;
+      console.log('image data ', image) 
       const response = await axios.post(
         "http://localhost:4000/employees",
-        data
+        { ...data, photo: image }
       );
-      console.log(response.data);
+      console.log('employees data: ', response.data);
       notifications.show({
         title: 'Success',
         message: 'Employee added successfully!',
@@ -162,7 +168,7 @@ const dispatch = useDispatch();
           /> */}
           {/* // */}
           <select
-            name="managerId"
+            name="manager"
             {...register("managerId", {
               // required: "managerId is required",
             })}
@@ -172,7 +178,7 @@ const dispatch = useDispatch();
           >
             <option value="">Select a Manager name</option>
             {employee.map((emp) => (
-              <option key={emp.id} value={emp.id}>
+              <option key={emp.id} value={emp.name}>
                 {emp.name}
               </option>
             ))}
@@ -182,7 +188,7 @@ const dispatch = useDispatch();
             <p className="text-red-500 mt-2">{errors.managerId.message}</p>
           )}
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label htmlFor="photo" className="block text-gray-700 font-bold mb-2">
             Photo
           </label>
@@ -200,12 +206,45 @@ const dispatch = useDispatch();
           {errors.photo && (
             <p className="text-red-500 mt-2">{errors.photo.message}</p>
           )}
+        </div> */}
+        <div>
+        <p>
+  <label htmlFor='file'>Your file:</label>{' '}
+  <Widget publicKey='e9953f30f67a52de187b' id='file' 
+  onFileSelect={(file) => {
+    console.log('File changed: ', file)
+
+    if (file) {
+      file.progress(info => {console.log('File progress: ', info.progress)
+      setIsFileLoaded(true);
+    })
+      file.done(info => {
+        console.log('File uploaded: ', info, 'after wawu: ', info.originalUrl)
+        setIsFileLoaded(false);
+        setImageUrl(info.cdnUrl);
+        register('photo').setValue(info.cdnUrl);
+        console.log('kaka ', info.cdnUrl)
+      })
+    }
+  }}
+  // onChange={(file) => {
+  //   if (file) {
+  //     file.promise().then((info) => {
+  //       // Set the image URL in the form data
+  //       register('photo').setValue(info.cdnUrl);
+  //     });
+  //   }
+  // }}
+/>
+{errors.photo && <p>{errors.photo.message}</p>}
+</p>
         </div>
         <button
           type="submit"
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          disabled={isFileLoaded}
         >
-          Add Employee
+          {isFileLoaded ? 'Loading...' : 'Add Employee'} 
         </button>
       </form>
     </div>

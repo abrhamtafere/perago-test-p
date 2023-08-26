@@ -11,18 +11,28 @@ import {
 import axios from "axios";
 import { UpdateEmployee } from "../component/UpdateEmployee";
 import { useDispatch, useSelector } from "react-redux";
-import { setAddSuccessMessage, setEditSuccessMessage, setEmployee } from "../redux/employeeSlice";
+import {
+  setAddSuccessMessage,
+  setEditSuccessMessage,
+  setEmployee,
+} from "../redux/employeeSlice";
 import { Loading } from "../component/Loading";
-import { useHistory } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 //apiSlice
-import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
-import { notifications, Notifications } from '@mantine/notifications';
-import { RiCheckboxCircleLine } from 'react-icons/ri';
+import {
+  useGetEmployeesQuery,
+  useGetRolesQuery,
+  useDeleteEmployeeMutation,
+} from "../redux/apiSlice";
+import { notifications, Notifications } from "@mantine/notifications";
+import { RiCheckboxCircleLine } from "react-icons/ri";
 
 const PAGE_SIZE = 5; // number of items to display per page
 
 const EmployeeTable = () => {
-  const { addSuccessMessage, editSuccessMessage } = useSelector((state) => state.employeeman);
+  const { addSuccessMessage, editSuccessMessage } = useSelector(
+    (state) => state.employeeman
+  );
   // const { employee, role } = useSelector((state) => state.employeeman);
   //apiSlice
   const { data: employee, error, isLoading, refetch } = useGetEmployeesQuery();
@@ -32,9 +42,11 @@ const EmployeeTable = () => {
     refetch: refetchRole,
   } = useGetRolesQuery();
 
+  const [deleteEmployee, { isLoading:deleteLoading, isError }] = useDeleteEmployeeMutation();
+
   //to refetch when to render the first time
   useEffect(() => {
-    refetch()
+    refetch();
   }, []);
 
   // you can use the following to use refetch when to navigate to the specific page
@@ -60,6 +72,7 @@ const EmployeeTable = () => {
   const [sortField, setSortField] = useState("id"); // Default sorting field
   const [sortId, setSortId] = useState("asc"); // Default sorting asc
   const [sortName, setSortName] = useState("asc"); // Default sorting
+
   const dispatch = useDispatch();
 
   if (isLoading) {
@@ -92,7 +105,6 @@ const EmployeeTable = () => {
     // Render a loading spinner or message until data is fetched
     return <Loading />;
   }
-  console.log("employeeafload", employee);
   console.log("emdata", employee);
 
   //for sorting
@@ -113,10 +125,10 @@ const EmployeeTable = () => {
         ? a.salary - b.salary
         : b.salary - a.salary;
     } else if (sortField === "name") {
-      return sortName=== "asc"
-  ? a.name.localeCompare(b.name)
-  : b.name.localeCompare(a.name);
-}
+      return sortName === "asc"
+        ? a.name.localeCompare(b.name)
+        : b.name.localeCompare(a.name);
+    }
     return 0;
   };
 
@@ -147,10 +159,11 @@ const EmployeeTable = () => {
     setIsEditModalOpen(true);
   };
 
-  const handleUpdate = (updatedEmployee) => {
-    const index = employee.findIndex(
-      (employee) => employee.id === updatedEmployee.id
-    );
+  // const handleUpdate = (updatedEmployee) => {
+  const handleUpdate = () => {
+    // const index = employee.findIndex(
+    //   (employee) => employee.id === updatedEmployee.id
+    // );
 
     // here usefull algorithm
     // dispatch(
@@ -164,15 +177,15 @@ const EmployeeTable = () => {
     // dispatch(setEditSuccessMessage('successfully edited'));
     setIsEditModalOpen(false);
     notifications.show({
-      title: 'Success',
-      message: 'successfully edited',
+      title: "Success",
+      message: "successfully edited",
       autoClose: 5000,
-      color: 'green',
+      color: "green",
       icon: <RiCheckboxCircleLine />,
-      withBorder: true
+      withBorder: true,
       // style: { backgroundColor: 'green' },
       // onClose: () => setEditSuccessMessage(null),
-    })
+    });
     // setTimeout(() => {
     //   dispatch(setEditSuccessMessage(''));
     // }, 3000)
@@ -189,9 +202,10 @@ const EmployeeTable = () => {
 
   const handleDeleteConfirm = async () => {
     try {
-      await axios.delete(
-        `http://localhost:4000/employees/${selectedEmployee.id}`
-      );
+      deleteEmployee(selectedEmployee.id);
+      // await axios.delete(
+      //   `http://localhost:4000/employees/${selectedEmployee.id}`
+      // );
       // Update the employees state in the parent component by filtering out the deleted employee
       //
       /* here is a usefull algorithm
@@ -204,14 +218,14 @@ const EmployeeTable = () => {
       refetch();
       setIsDeleteSuccess(true);
       notifications.show({
-        title: 'Success',
-        message: 'successfully deleted',
-      autoClose: 5000,
-      color: 'green',
-      icon: <RiCheckboxCircleLine />,
-        
+        title: "Success",
+        message: "successfully deleted",
+        autoClose: 5000,
+        color: "green",
+        icon: <RiCheckboxCircleLine />,
+
         // onClose: () => setEditSuccessMessage(null),
-      })
+      });
       setIsDeleteModalOpen(false);
       setSelectedEmployee(null);
       setTimeout(() => {
@@ -227,10 +241,9 @@ const EmployeeTable = () => {
     setSelectedEmployee(null);
   };
 
-  if(addSuccessMessage){
-    
+  if (addSuccessMessage) {
   }
-  
+
   console.log("success message: ", addSuccessMessage);
   return (
     <div className="container mx-auto p-2 ">
@@ -310,8 +323,9 @@ const EmployeeTable = () => {
                 )}
               </button>
             </th>
-            <th>Name
-            <button
+            <th>
+              Name
+              <button
                 onClick={() => {
                   setSortField("name");
                   setSortName(sortName === "asc" ? "desc" : "asc");
@@ -353,7 +367,7 @@ const EmployeeTable = () => {
                 )}
               </button>
             </th>
-            <th>Manager Id</th>
+            <th>Manager Name</th>
             <th>Photo</th>
             <th>Actions</th>
           </tr>
@@ -365,7 +379,8 @@ const EmployeeTable = () => {
               <td>{item.name}</td>
               <td>{item.role}</td>
               {/* <td>{item.salary}</td> */}
-              <td>{item.salary.toLocaleString()}</td>
+              <td>{item.salary}</td>
+              {/* .toLocaleString() // It is used to convert a numeric or date value into a string representation according to the specified locale or formatting options. */}
               <td>{item.managerId}</td>
               <td>
                 <Avatar
@@ -462,3 +477,17 @@ const EmployeeTable = () => {
 };
 
 export default EmployeeTable;
+
+//the couse of the error
+
+// One of your dependencies, babel-preset-react-app, is importing the
+// "@babel/plugin-proposal-private-property-in-object" package without
+// declaring it in its dependencies. This is currently working because
+// "@babel/plugin-proposal-private-property-in-object" is already in your
+// node_modules folder for unrelated reasons, but it may break at any time.
+
+// babel-preset-react-app is part of the create-react-app project, which
+// is not maintianed anymore. It is thus unlikely that this bug will
+// ever be fixed. Add "@babel/plugin-proposal-private-property-in-object" to
+// your devDependencies to work around this error. This will make this message
+// go away.

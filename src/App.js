@@ -8,7 +8,7 @@ import AddRole from "./component/AddRole";
 import About from "./pages/About";
 // import Employee from "./pages/Employee";
 import Home from "./pages/Home";
-import NoPage from "./pages/NoPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import Role from "./pages/Role";
 import RoleTable from "./pages/RoleTable";
 import EmployeeTable from "./pages/EmployeeTable";
@@ -187,7 +187,7 @@ function App() {
           <Route path="employee" element={<EmployeeTable />} />
           {/* <Route path="employee" element={<Employee />} /> */}
           
-          <Route path="*" element={<NoPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -12,6 +12,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@uploadcare/react-widget": "^2.4.5",
     "axios": "^1.4.0",
     "gsap": "^3.12.2",
     "primeflex": "^3.3.1",

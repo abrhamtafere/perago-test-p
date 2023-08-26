@@ -261,7 +261,7 @@
     },
     {
       "id": 5,
-      "name": "Product Owner ",
+      "name": "Product Owner",
       "hasAParent": true,
       "parentId": 2,
       "childrenId": [
@@ -395,7 +395,7 @@
   "employees": [
     {
       "id": 1,
-      "name": "John Doe j",
+      "name": "John Doe",
       "role": "CEO",
       "salary": 150000,
       "managerId": null,
@@ -411,7 +411,7 @@
     },
     {
       "id": 3,
-      "name": "Bob Adnan",
+      "name": "Bob Adnan ",
       "role": "Project Manager",
       "salary": 100000,
       "managerId": 1,
@@ -419,27 +419,17 @@
     },
     {
       "id": 4,
-      "name": "Alice Lee",
+      "name": "Alice Leto",
       "role": "Product Owner",
       "salary": 90000,
       "managerId": 3,
       "photo": "https://example.com/photos/alice_lee.jpg"
     },
     {
-      "id": 6,
-      "name": "Maggie Chen",
-      "role": "Frontend Developer",
-      "salary": 70000,
-      "managerId": 5,
-      "photo": "https://example.com/photos/maggie_chen.jpg"
-    },
-    {
-      "id": 7,
       "name": "Samuel Kim",
       "role": "Backend Developer",
-      "salary": 70000,
-      "managerId": 5,
-      "photo": "https://example.com/photos/samuel_kim.jpg"
+      "salary": "700000",
+      "id": 7
     },
     {
       "id": 8,
@@ -546,46 +536,6 @@
       "photo": "https://example.com/photos/george_lee.jpg"
     },
     {
-      "name": "newu",
-      "role": "CTO",
-      "salary": "44",
-      "managerId": "4",
-      "photo": {
-        "0": {}
-      },
-      "id": 24
-    },
-    {
-      "name": "after",
-      "role": "Tech Lead",
-      "salary": "5959",
-      "managerId": "3",
-      "photo": {
-        "0": {}
-      },
-      "id": 25
-    },
-    {
-      "name": "Test",
-      "role": "HR",
-      "salary": "89",
-      "managerId": "3",
-      "photo": {
-        "0": {}
-      },
-      "id": 30
-    },
-    {
-      "name": "Bob Tomson",
-      "role": "HR",
-      "salary": "5999",
-      "managerId": "3",
-      "photo": {
-        "0": {}
-      },
-      "id": 31
-    },
-    {
       "name": "Hua",
       "role": "Scrum Master",
       "salary": "7500",
@@ -626,14 +576,87 @@
       "id": 37
     },
     {
-      "name": "ddd",
-      "role": "Account and Payable",
-      "salary": "333",
-      "managerId": "2",
+      "name": "test name",
+      "role": "Scrum Master",
+      "salary": "4440",
+      "managerId": "6",
       "photo": {
         "0": {}
       },
       "id": 38
+    },
+    {
+      "name": "abrham tafere",
+      "role": "CTO",
+      "salary": "6000",
+      "managerId": "7",
+      "photo": {
+        "0": {}
+      },
+      "id": 39
+    },
+    {
+      "name": "abrham",
+      "role": "Other Backend Roles",
+      "salary": "22222222222",
+      "managerId": "Samuel Kim",
+      "photo": {
+        "0": {}
+      },
+      "id": 40
+    },
+    {
+      "name": "abrham",
+      "role": "CTO",
+      "salary": "3333333333333",
+      "managerId": "Cindy Liu",
+      "id": 45
+    },
+    {
+      "name": "aa",
+      "role": "CTO",
+      "salary": "77",
+      "managerId": "Chris Kim",
+      "id": 46
+    },
+    {
+      "name": "w",
+      "role": "CTO",
+      "salary": "444",
+      "managerId": "Alex Kim",
+      "id": 47
+    },
+    {
+      "name": "abrham",
+      "role": "Other Frontend Roles",
+      "salary": "44435",
+      "managerId": "Sophie Kim",
+      "photo": "https://ucarecdn.com/7465b799-5382-4faa-873e-81b4b6a9b2fb/",
+      "id": 54
+    },
+    {
+      "name": "aa",
+      "role": "Other DevOps Roles",
+      "salary": "333333333",
+      "managerId": "Cindy Liu",
+      "photo": "https://ucarecdn.com/ef48910a-6724-4e11-9378-ddf17c2e1477/",
+      "id": 55
+    },
+    {
+      "name": "abrham tafere",
+      "role": "Project Manager",
+      "salary": "111111111111",
+      "managerId": "George Lee",
+      "photo": "https://ucarecdn.com/71f716b3-363c-4608-aefb-c6152f7a5ffc/",
+      "id": 56
+    },
+    {
+      "name": "abrhot zemir",
+      "role": "Financial Analyst",
+      "salary": "5555555",
+      "managerId": "David Brown",
+      "photo": "https://ucarecdn.com/a4b0c5f2-3107-4ed5-8300-13e178088397/",
+      "id": 57
     }
   ]
 }

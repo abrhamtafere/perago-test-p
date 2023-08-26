@@ -4,7 +4,6 @@ import { Outlet, Link } from 'react-router-dom';
 
 export const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
   return (
     <>
       <nav className="bg-gray-800 p-1">
@@ -45,8 +44,8 @@ export const NavBar = () => {
               <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="outline-none mobile-menu-button"
-              >
-                <svg
+              >  
+                <svg  
                   className="w-6 h-6 text-white"
                   x-show="!showMenu"
                   fill="none"
@@ -54,7 +53,7 @@ export const NavBar = () => {
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
+                 <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth="2"
