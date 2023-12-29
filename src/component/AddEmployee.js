@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setAddSuccessMessage } from "../redux/employeeSlice";
+import { setAddSuccessMessage } from "../redux/slice/employeeSlice";
 import { useNavigate } from 'react-router-dom';
 import { notifications } from "@mantine/notifications";
 import { RiCheckboxCircleLine } from 'react-icons/ri';
-import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
+import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/api/apiSlice";
 import { Loading } from './Loading';
 import { Widget } from "@uploadcare/react-widget";
 

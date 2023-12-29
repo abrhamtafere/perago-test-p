@@ -418,12 +418,10 @@
       "photo": "https://example.com/photos/bob_johnson.jpg"
     },
     {
-      "id": 4,
-      "name": "Alice Leto",
+      "name": "Alice Letoo",
       "role": "Product Owner",
       "salary": 90000,
-      "managerId": 3,
-      "photo": "https://example.com/photos/alice_lee.jpg"
+      "id": 4
     },
     {
       "name": "Samuel Kim",
@@ -597,16 +595,6 @@
     },
     {
       "name": "abrham",
-      "role": "Other Backend Roles",
-      "salary": "22222222222",
-      "managerId": "Samuel Kim",
-      "photo": {
-        "0": {}
-      },
-      "id": 40
-    },
-    {
-      "name": "abrham",
       "role": "CTO",
       "salary": "3333333333333",
       "managerId": "Cindy Liu",
@@ -618,13 +606,6 @@
       "salary": "77",
       "managerId": "Chris Kim",
       "id": 46
-    },
-    {
-      "name": "w",
-      "role": "CTO",
-      "salary": "444",
-      "managerId": "Alex Kim",
-      "id": 47
     },
     {
       "name": "abrham",
@@ -645,9 +626,7 @@
     {
       "name": "abrham tafere",
       "role": "Project Manager",
-      "salary": "111111111111",
-      "managerId": "George Lee",
-      "photo": "https://ucarecdn.com/71f716b3-363c-4608-aefb-c6152f7a5ffc/",
+      "salary": "7777",
       "id": 56
     },
     {

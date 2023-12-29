@@ -15,7 +15,7 @@ import {
   setAddSuccessMessage,
   setEditSuccessMessage,
   setEmployee,
-} from "../redux/employeeSlice";
+} from "../redux/slice/employeeSlice";
 import { Loading } from "../component/Loading";
 import { useHistory } from "react-router-dom";
 //apiSlice
@@ -23,7 +23,7 @@ import {
   useGetEmployeesQuery,
   useGetRolesQuery,
   useDeleteEmployeeMutation,
-} from "../redux/apiSlice";
+} from "../redux/api/apiSlice";
 import { notifications, Notifications } from "@mantine/notifications";
 import { RiCheckboxCircleLine } from "react-icons/ri";
 

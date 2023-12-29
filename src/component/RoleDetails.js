@@ -1,4 +1,4 @@
-import { useGetEmployeesQuery } from "../redux/apiSlice";
+import { useGetEmployeesQuery } from "../redux/api/apiSlice";
 import { Loading } from "./Loading";
 
 

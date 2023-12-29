@@ -9,9 +9,9 @@
 
 //after the apiSlice
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import employeeReducer from './employeeSlice';
-import apiSliceReducer from './apiSlice';
-import { apiSlice } from './apiSlice';
+import employeeReducer from './slice/employeeSlice';
+import apiSliceReducer from './api/apiSlice';
+import { apiSlice } from './api/apiSlice';
 
 // to persist or This allows the Redux state to be preserved even if the page is refreshed or navigated away from
 import { persistStore, persistReducer } from 'redux-persist';

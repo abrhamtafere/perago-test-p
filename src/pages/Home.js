@@ -3,7 +3,7 @@ import gsap from "gsap";
 import React, { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { setRole, setEmployee } from "../redux/employeeSlice";
+import { setRole, setEmployee } from "../redux/slice/employeeSlice";
 
 const Home = () => {
   const elementRef4 = useRef(null);

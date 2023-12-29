@@ -7,9 +7,9 @@ import {
   setEmployee,
   setEditSuccessMessage,
   setRole,
-} from "../redux/employeeSlice";
+} from "../redux/slice/employeeSlice";
 //apiSlice
-import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/apiSlice";
+import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/api/apiSlice";
 import { Loading } from "../component/Loading";
 import { notifications } from "@mantine/notifications";
 import { RiCheckboxCircleLine, RiErrorWarningLine } from "react-icons/ri";

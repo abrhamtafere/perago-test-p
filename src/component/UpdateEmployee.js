@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useUpdateEmployeeMutation } from '../redux/apiSlice';
+import { useUpdateEmployeeMutation } from '../redux/api/apiSlice';
 
 export const UpdateEmployee = ({ employee, onUpdate }) => {
   const [name, setName] = useState(employee.name);
@@ -21,7 +21,7 @@ export const UpdateEmployee = ({ employee, onUpdate }) => {
       console.log(error);
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-4">
@@ -72,3 +72,4 @@ export const UpdateEmployee = ({ employee, onUpdate }) => {
     </form>
   );
 };
+
