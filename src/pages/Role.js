@@ -5,7 +5,8 @@ import { generateTreeData } from './generateTreeData';
 import axios from "axios";
 import { useSelector } from "react-redux";
 // import { setData } from "../redux/employeeSlice";
-import { useGetEmployeesQuery, useGetRolesQuery } from '../redux/api/apiSlice';
+import { useGetEmployeesQuery } from '../redux/api/employeeApiSlice';
+import { useGetRolesQuery } from '../redux/api/roleApiSlice';
 import { Loading } from "../component/Loading";
 
 export default function Role() {

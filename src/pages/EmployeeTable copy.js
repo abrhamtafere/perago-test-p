@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import { UpdateEmployee } from "../component/UpdateEmployee";
 import { useDispatch, useSelector } from "react-redux";
-import { setEmployee } from "../redux/employeeSlice";
+import { setEmployee } from "../redux/slice/employeeSlice";
 import { Loading } from "../component/Loading";
 
 const PAGE_SIZE = 5; // number of items to display per page

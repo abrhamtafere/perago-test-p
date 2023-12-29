@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { useGetRolesQuery } from "../redux/api/apiSlice";
+import { useGetRolesQuery } from "../redux/api/roleApiSlice";
 import { Loading } from "../component/Loading";
 import { RoleItem } from "../component/RoleItem";
 import { RoleDetails } from "../component/RoleDetails";

@@ -21,9 +21,9 @@ import { useHistory } from "react-router-dom";
 //apiSlice
 import {
   useGetEmployeesQuery,
-  useGetRolesQuery,
   useDeleteEmployeeMutation,
-} from "../redux/api/apiSlice";
+} from "../redux/api/employeeApiSlice";
+import { useGetRolesQuery } from "../redux/api/roleApiSlice";
 import { notifications, Notifications } from "@mantine/notifications";
 import { RiCheckboxCircleLine } from "react-icons/ri";
 
@@ -173,7 +173,7 @@ const EmployeeTable = () => {
     //     ...employee.slice(index + 1),
     //   ])
     //   );
-    refetch();
+    // refetch();
     // dispatch(setEditSuccessMessage('successfully edited'));
     setIsEditModalOpen(false);
     notifications.show({

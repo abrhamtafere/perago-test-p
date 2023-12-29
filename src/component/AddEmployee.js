@@ -6,7 +6,7 @@ import { setAddSuccessMessage } from "../redux/slice/employeeSlice";
 import { useNavigate } from 'react-router-dom';
 import { notifications } from "@mantine/notifications";
 import { RiCheckboxCircleLine } from 'react-icons/ri';
-import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/api/apiSlice";
+import { useGetEmployeesQuery } from "../redux/api/employeeApiSlice";
 import { Loading } from './Loading';
 import { Widget } from "@uploadcare/react-widget";
 

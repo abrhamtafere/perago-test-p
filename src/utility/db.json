@@ -261,7 +261,7 @@
     },
     {
       "id": 5,
-      "name": "Product Owner",
+      "name": "Product Owner jdd",
       "hasAParent": true,
       "parentId": 2,
       "childrenId": [
@@ -394,28 +394,22 @@
   ],
   "employees": [
     {
-      "id": 1,
-      "name": "John Doe",
+      "name": "John Doeh klkl",
       "role": "CEO",
       "salary": 150000,
-      "managerId": null,
-      "photo": "https://www.corporatephotographylondon.com/wp-content/uploads/2019/11/HKstrategies-1210-1024x683.jpg"
+      "id": 1
     },
     {
-      "id": 2,
-      "name": "Fentanesh Belachewu",
+      "name": "Fentanesh Belachewu mk",
       "role": "CTO",
       "salary": 120000,
-      "managerId": 1,
-      "photo": "https://media.licdn.com/dms/image/D4E03AQHHAPjjL6pQ1Q/profile-displayphoto-shrink_800_800/0/1673899223410?e=2147483647&v=beta&t=K7Zi4sQQswzpmtm8EOvpu7IzbmY7R0Neht3QoHxWzSk"
+      "id": 2
     },
     {
-      "id": 3,
-      "name": "Bob Adnan ",
+      "name": "Bob Adnan  ll",
       "role": "Project Manager",
       "salary": 100000,
-      "managerId": 1,
-      "photo": "https://example.com/photos/bob_johnson.jpg"
+      "id": 3
     },
     {
       "name": "Alice Letoo",
@@ -622,12 +616,6 @@
       "managerId": "Cindy Liu",
       "photo": "https://ucarecdn.com/ef48910a-6724-4e11-9378-ddf17c2e1477/",
       "id": 55
-    },
-    {
-      "name": "abrham tafere",
-      "role": "Project Manager",
-      "salary": "7777",
-      "id": 56
     },
     {
       "name": "abrhot zemir",

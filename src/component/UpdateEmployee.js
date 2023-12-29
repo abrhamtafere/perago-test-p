@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useUpdateEmployeeMutation } from '../redux/api/apiSlice';
+import { useUpdateEmployeeMutation } from '../redux/api/employeeApiSlice';
 
 export const UpdateEmployee = ({ employee, onUpdate }) => {
   const [name, setName] = useState(employee.name);

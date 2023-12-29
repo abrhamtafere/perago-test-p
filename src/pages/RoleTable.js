@@ -9,7 +9,8 @@ import {
   setRole,
 } from "../redux/slice/employeeSlice";
 //apiSlice
-import { useGetEmployeesQuery, useGetRolesQuery } from "../redux/api/apiSlice";
+import { useGetEmployeesQuery } from "../redux/api/employeeApiSlice";
+import { useGetRolesQuery } from "../redux/api/roleApiSlice";
 import { Loading } from "../component/Loading";
 import { notifications } from "@mantine/notifications";
 import { RiCheckboxCircleLine, RiErrorWarningLine } from "react-icons/ri";
